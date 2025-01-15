@@ -9,5 +9,8 @@ export const content = [
 ];
 export const theme = {
   extend: {},
+  fontFamily: {
+    Pretendard: ['Pretendard'],
+  },
 };
 export const plugins = ['tailwind-scrollbar-hide'];
