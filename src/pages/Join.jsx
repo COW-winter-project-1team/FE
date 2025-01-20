@@ -43,7 +43,7 @@ const Join = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();ㄴ
+    e.preventDefault();
     if (checkInput()) {
       alert('회원가입 성공!');
     }
