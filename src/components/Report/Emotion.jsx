@@ -14,12 +14,12 @@ const Emotion = () => {
         파이가 분석한 {name} 님의 플레이리스트는 다음과 같아요
       </p>
       <div id='emotionWrapper'>
-        <p className='text-[14px] font-normal mb-[58px] '>
+        <p className='text-[14px] font-normal mb-[34px] '>
           새로 만든 플레이리스트의 감정 태그
         </p>
         <div
           id='emotionBox'
-          className='grid grid-cols-3 gap-x-[10px] gap-y-[33px] place-items-center mb-10 '
+          className='grid grid-cols-3 gap-x-[13px] gap-y-[20px] place-items-center mb-10 '
         >
           <EmotionTag>지침</EmotionTag>
           <EmotionTag>행복</EmotionTag>

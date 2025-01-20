@@ -6,7 +6,7 @@ const ResultReport = () => {
   const navigate = useNavigate();
 
   const playMusic = () => {
-    navigate('/main');
+    navigate('/');
   };
   return (
     <div className='bg-[#242723] w-full h-auto text-white flex flex-col overflow-scroll m-auto'>
