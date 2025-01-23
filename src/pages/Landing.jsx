@@ -20,11 +20,11 @@ const Landing = () => {
     navigate('/join');
   };
   return (
-    <div className='flex w-[312px] flex-col justify-center align-middle gap-[38px]'>
+    <div className='w-full flex flex-col justify-center gap-[38px]'>
       <img
         src='src/assets/FullLogo.png'
         alt='logo'
-        className='flex mx-auto w-[260px] h-[180px]'
+        className='flex mx-auto w-[260px] h-[160px]'
       />
       <CommonInput
         placeholder='아이디'
