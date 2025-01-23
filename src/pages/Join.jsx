@@ -1,4 +1,3 @@
-import React from 'react';
 import CommonInput from '../components/CommonInput';
 import CommonButton from '../components/CommonBtn';
 import { useState } from 'react';
@@ -18,22 +17,21 @@ const Join = () => {
     const newErrors = {};
     //닉네임 검사
     if (!nicknamePattern.test(nickname)) {
-      newErrors.nickname = '영문 16자 이내로 작성해줘야 합니다';
+      newErrors.nickname = '영문 16자 이내로 작성해 주세요.';
     }
     //이메일 검사
     if (!emailPattern.test(email)) {
-      newErrors.email = '옳바른 이메일 양식을 작성해 주세요';
+      newErrors.email = '올바른 이메일 양식을 작성해 주세요';
     }
     //비밀번호 검사
     if (!passwordPattern.test(password)) {
-      newErrors.password =
-        '비밀번호는 8 ~ 16 자 및 특수문자를 포함해야 합니다.';
+      newErrors.password = '비밀번호는 8 ~ 16 자 및 특수문자를 포함해 주세요.';
     }
     //비밀번호 확인칸 검사
     if (confirmPassword === '') {
-      newErrors.confirmPassword = '비밀번호를 입력 해주세요.';
+      newErrors.confirmPassword = '비밀번호를 입력해 주세요.';
       if (password !== confirmPassword) {
-        newErrors.confirmPassword = '비밀번호가 일치하지 않습니다.';
+        newErrors.confirmPassword = '비밀번호가 일치하지q 않습니다.';
       }
     }
 
@@ -111,9 +109,10 @@ const Join = () => {
           <div className='flex justify-center items-center mt-[71px]'>
             <CommonButton
               type='submit'
-              children='확인'
               className='w-[180px] h-[52px] rounded-[20px] bg-[#343434] text-white text-center text-[22px] font-[500] focus:outline-none'
-            />
+            >
+              확인
+            </CommonButton>
           </div>
         </form>
       </div>
