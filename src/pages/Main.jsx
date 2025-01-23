@@ -4,10 +4,14 @@ import MainHeader from '../MainUi/MainHeader';
 const Main = () => {
   return (
     <div className='bg-[#242723] w-screen h-screen'>
-      <MainHeader hideImage='fontLogo' className />
+      <MainHeader isHide='fontLogo' />
 
       <div className='flex flex-col items-center justify-center p-8  space-y-[34px] text-center'>
-        <img src='src/assets/fontLogo.png' alt='fontLogo' className='m-auto' />
+        <img
+          src='src/assets/fontLogo.png'
+          alt='fontLogo'
+          className='m-auto w-[250px]'
+        />
 
         <p className='text-[#A8A8A8] font-bold text-[16px] '>
           생성한 플레이리스트가 아직 없어요
