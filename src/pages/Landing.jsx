@@ -38,7 +38,7 @@ const Landing = () => {
         value={pw}
         onChange={(e) => setPw(e.target.value)}
       />
-      <DefaultBtn type='submit' className='mx-auto' onClick={Login}>
+      <DefaultBtn type='submit' onClick={Login}>
         로그인
       </DefaultBtn>
       <p
