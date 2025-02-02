@@ -9,7 +9,7 @@ const Playlist = () => {
   };
   return (
     <div className='flex justify-center'>
-      <div className='w-full max-w-4xl h-[43rem] overflow-y-auto scrollbar-hide px-4 scroll'>
+      <div className='w-full max-w-4xl h-[43rem] overflow-y-auto scrollbar-hide px-4 '>
         //스크롤 컨테이너
         <div className='grid grid-cols-2 gap-5'>
           {playlists.map((playlist, index) => (

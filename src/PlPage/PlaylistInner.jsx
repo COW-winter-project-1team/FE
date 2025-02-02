@@ -40,7 +40,7 @@ const PlaylistInner = () => {
         <div className='w-full'>
           <PlaylistBackground isEdit={isEdit} trackHandler={trackHandler} />
         </div>
-        <div className=' bg-[#242723] text-white  p-4'>
+        <div className=' bg-[#242723] text-white p-4'>
           <div className='flex items-start justify-start text-gray-400 gap-2'>
             <p>{playlist.date}</p>
             <span>•</span>
