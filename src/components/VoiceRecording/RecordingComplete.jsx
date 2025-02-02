@@ -3,7 +3,7 @@ import CommonBtn from '../CommonBtn';
 import { useNavigate } from 'react-router-dom';
 import ReportLoading from '../ReportLoading';
 
-const RecordingComplete = ({ username }) => {
+const RecordingComplete = ({ username, moodText }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const RecordingComplete = ({ username }) => {
         </p>
         <textarea
           className='w-[280px] h-[150px] rounded-md text-[14px] text-center p-4 resize-none focus:outline-none mb-[40px] font-medium'
-          value='오늘 데이트를 다녀와서 기분이 정말 좋아 기분 좋은 사랑 노래가 듣고 싶어'
+          value={moodText}
           readOnly
         />
       </div>

@@ -28,7 +28,11 @@ const RecordingPage = () => {
   return (
     <div className='w-full h-100vh'>
       {recordingCompleted ? (
-        <RecordingComplete username={username} audioUrl={audioUrl} />
+        <RecordingComplete
+          username={username}
+          audioUrl={audioUrl}
+          moodText='오늘 데이트를 다녀와서 기분이 정말 좋아 기분 좋은 사랑 노래가 듣고 싶어'
+        />
       ) : isRecording ? (
         <Recording
           username={username}
