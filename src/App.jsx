@@ -3,6 +3,7 @@ import Landing from './pages/Landing';
 import Main from './pages/Main';
 import Join from './pages/Join';
 import ResultReport from './pages/resultReport';
+import RecordingPage from './pages/RecordingPage';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Route path='/main' element={<Main />} />
           <Route path='/join' element={<Join />} />
           <Route path='/report' element={<ResultReport />} />
+          <Route path='/recording' element={<RecordingPage />} />
         </Routes>
       </Router>
     </div>
