@@ -8,7 +8,7 @@ const PlaylistBackground = ({ isEdit, trackHandler }) => {
   const playlist = playlistsData.find((song) => song.index === playlistId);
 
   return (
-    <div className='relative  w-full h-64 md:h-80 lg:h-96 overflow-hidden'>
+    <div className='relative w-full h-64 md:h-80 lg:h-96 overflow-hidden'>
       <img
         src={playlist.imgUrl}
         alt={playlist.title}

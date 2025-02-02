@@ -1,6 +1,6 @@
 import TrackItem from './TrackItem';
 
-const TrackList = ({ musicSet = [], isEdit, isDelete, trackCount }) => {
+const TrackList = ({ musicSet, isEdit, isDelete, trackCount }) => {
   if (!musicSet || musicSet.length === 0) {
     return <p className='text-gray-400 p-4'>트랙이 없습니다.</p>;
   }
