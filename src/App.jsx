@@ -5,6 +5,7 @@ import Join from './pages/Join';
 import ResultReport from './pages/resultReport';
 import PlaylistPage from './PlPage/PlaylistPage';
 import PlaylistInner from './PlPage/PlaylistInner';
+import RecordingPage from './pages/RecordingPage';
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path='/report' element={<ResultReport />} />
           <Route path='/playlist' element={<PlaylistPage />} />
           <Route path='/tracklist/:index' element={<PlaylistInner />} />
+          <Route path='/recording' element={<RecordingPage />} />
         </Routes>
       </Router>
     </div>
