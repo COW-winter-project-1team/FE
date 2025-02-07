@@ -3,6 +3,8 @@ import Landing from './pages/Landing';
 import Main from './pages/Main';
 import Join from './pages/Join';
 import ResultReport from './pages/resultReport';
+import PlaylistPage from './PlPage/PlaylistPage';
+import PlaylistInner from './PlPage/PlaylistInner';
 import RecordingPage from './pages/RecordingPage';
 
 const App = () => {
@@ -14,6 +16,8 @@ const App = () => {
           <Route path='/main' element={<Main />} />
           <Route path='/join' element={<Join />} />
           <Route path='/report' element={<ResultReport />} />
+          <Route path='/playlist' element={<PlaylistPage />} />
+          <Route path='/tracklist/:index' element={<PlaylistInner />} />
           <Route path='/recording' element={<RecordingPage />} />
         </Routes>
       </Router>

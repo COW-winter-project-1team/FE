@@ -18,10 +18,9 @@ const Main = () => {
           <br /> 지금 바로 생성하러 갈까요?
         </p>
 
-        <CommonButton
-          children='생성하기'
-          className='bg-[#343434] text-white w-[125px] h-[40px] rounded-2xl font-[500] text-[px]'
-        />
+        <CommonButton className='bg-[#343434] text-white w-[125px] h-[40px] rounded-2xl font-[500]'>
+          생성하기
+        </CommonButton>
       </div>
     </div>
   );
