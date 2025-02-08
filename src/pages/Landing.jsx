@@ -7,9 +7,17 @@ const Landing = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
-  const Login = () => {
+  const Login = async () => {
     if (id.trim() && pw.trim()) {
       //성공 로직
+      try {
+        //api 연결자리
+        //로그인 성공했을 때
+        //로그인 실패했을 때
+      } catch (err) {
+        console.log('로그인 실패: ', err);
+        alert('로그인 중 오류 발생', err);
+      }
     } else {
       alert('아이디와 비밀번호를 모두 입력해 주세요.');
     }

@@ -30,20 +30,24 @@ const Join = () => {
     //비밀번호 확인칸 검사
     if (confirmPassword === '') {
       newErrors.confirmPassword = '비밀번호를 입력해 주세요.';
-      if (password !== confirmPassword) {
-        newErrors.confirmPassword = '비밀번호가 일치하지q 않습니다.';
-      }
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = '비밀번호가 일치하지 않습니다.';
     }
-
-    console.log('Validation results:', newErrors); // 확인용 로그
     setError(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (checkInput()) {
       alert('회원가입 성공!');
+    }
+
+    try {
+      //api 연결할자리
+    } catch (err) {
+      console.log('회원가입 실패: ', err);
+      alert('회원가입에 실패했습니다.');
     }
   };
 

@@ -6,18 +6,16 @@ const TrackList = ({ musicSet, isEdit, isDelete, trackCount }) => {
   }
 
   return (
-    <div className='grid grid-cols-2 gap-4 mt-4'>
-      <div className='p-4'>
-        {musicSet.map((track) => (
-          <TrackItem
-            key={track.id}
-            track={track}
-            isEdit={isEdit}
-            isDelete={isDelete}
-            trackCount={trackCount}
-          />
-        ))}
-      </div>
+    <div className='w-full mt-4 max-h-[43rem] overflow-y-auto scrollbar-hide'>
+      {musicSet.map((track) => (
+        <TrackItem
+          key={track.id}
+          track={track}
+          isEdit={isEdit}
+          isDelete={isDelete}
+          trackCount={trackCount}
+        />
+      ))}
     </div>
   );
 };
