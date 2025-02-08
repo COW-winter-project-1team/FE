@@ -12,9 +12,13 @@ const convertBlobToWav = async (webmBlob) => {
 };
 
 const RecordingPage = () => {
+  //음성녹음 상태 관리
   const [isRecording, setIsRecording] = useState(false);
   const [recordingCompleted, setRecordingCompleted] = useState(false);
   const [audioUrl, setAudioUrl] = useState(null);
+
+  //STT 결과 텍스트
+  const [moodText, setMoodText] = useState('');
 
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
@@ -36,34 +40,21 @@ const RecordingPage = () => {
     console.log('현재 mediaBlobUrl 상태:', mediaBlobUrl);
 
     if (mediaBlobUrl) {
-      console.log(
-        '녹음된 오디오 url:',
-        mediaBlobUrl,
-        '타입: ',
-        typeof mediaBlobUrl,
-      );
-
       fetch(mediaBlobUrl)
         .then((res) => res.blob())
         .then(async (blob) => {
-          console.log('WebM Blob 변환');
-
           //WebM → WAV 변환
           const wavBlob = await convertBlobToWav(blob);
           const wavFile = new File([wavBlob], 'userMood.wav', {
             type: 'audio/wav',
             lastModified: new Date().getTime(),
           });
-
-          console.log('변환된 WAV 파일:', wavFile, typeof wavFile);
-
           setAudioUrl(wavFile);
           setRecordingCompleted(true);
-
           // Clova STT API 요청
           try {
             const VoiceToText = await convertVoiceToText(wavFile);
-            console.log('음성 인식 결과:', VoiceToText);
+            setMoodText(VoiceToText.text);
           } catch (err) {
             console.error('음성 인식 오류:', err);
           }
@@ -78,7 +69,7 @@ const RecordingPage = () => {
         <RecordingComplete
           username={username}
           audioUrl={audioUrl}
-          moodText='임시 데이터'
+          moodText={moodText}
         />
       ) : isRecording ? (
         <Recording

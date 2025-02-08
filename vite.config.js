@@ -16,7 +16,7 @@ export default ({ mode }) => {
           secure: false,
         },
         '/clova': {
-          target: 'https://naveropenapi.apigw-pub.fin-ntruss.com/recog/v1',
+          target: env.VITE_CLOVA_STT_API_URL,
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/clova/, ''),
           secure: false,
