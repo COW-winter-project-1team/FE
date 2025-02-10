@@ -1,10 +1,11 @@
 import CommonInput from '../components/CommonInput';
 import CommonButton from '../components/CommonBtn';
 import { useState } from 'react';
+import { signup } from '../api/api';
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const nicknamePattern = /^[a-zA-Z0-9]{1,16}$/;
-const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net)$/;
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z0-9\-]+/;
 
 const Join = () => {
   const [nickname, setNickname] = useState('');
@@ -39,14 +40,22 @@ const Join = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (checkInput()) {
-      alert('회원가입 성공!');
+    if (!checkInput()) {
     }
 
+    alert('회원가입 성공!');
+
     try {
-      //api 연결할자리
+      const userData = {
+        username: nickname,
+        email: email,
+        password: password,
+      };
+
+      const result = await signup(userData);
+      console.log('회원가입이 완료입니다!', result);
     } catch (err) {
-      console.log('회원가입 실패: ', err);
+      console.error('회원가입 실패: ', err);
       alert('회원가입에 실패했습니다.');
     }
   };

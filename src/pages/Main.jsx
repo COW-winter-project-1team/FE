@@ -8,7 +8,7 @@ const Main = () => {
 
       <div className='flex flex-col items-center justify-center p-8  space-y-[34px] text-center'>
         <img
-          src='src/assets/fontLogo.png'
+          src='src/assets/EngLogo.png'
           alt='fontLogo'
           className='m-auto w-[250px]'
         />
