@@ -15,10 +15,16 @@ export default ({ mode }) => {
           rewrite: (path) => path.replace(/^\/api/, ''),
           secure: false,
         },
-        '/clova': {
+        '/stt': {
           target: env.VITE_CLOVA_STT_API_URL,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/clova/, ''),
+          rewrite: (path) => path.replace(/^\/stt/, ''),
+          secure: false,
+        },
+        '/chatbot': {
+          target: env.VITE_CLOVA_CHATBOT_API_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/chatbot/, ''),
           secure: false,
         },
       },

@@ -37,8 +37,6 @@ const RecordingPage = () => {
   };
 
   useEffect(() => {
-    console.log('현재 mediaBlobUrl 상태:', mediaBlobUrl);
-
     if (mediaBlobUrl) {
       fetch(mediaBlobUrl)
         .then((res) => res.blob())

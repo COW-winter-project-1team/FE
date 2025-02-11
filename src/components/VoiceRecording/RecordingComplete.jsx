@@ -2,18 +2,30 @@ import { useState } from 'react';
 import CommonBtn from '../CommonBtn';
 import { useNavigate } from 'react-router-dom';
 import ReportLoading from '../ReportLoading';
+import { playListRecommendation, createReport } from '../../api/Voice';
 
 const RecordingComplete = ({ username, moodText }) => {
   const [loading, setLoading] = useState(false);
+  // const [reportInfo, setReportInfo] = useState('');
   const navigate = useNavigate();
 
   const generateReport = async () => {
+    try {
+      const chatbotRes = await playListRecommendation(moodText);
+      console.log('chatbot res: ', chatbotRes);
+      const reportCreated = await createReport(chatbotRes);
+      try {
+        if (chatbotRes) {
+          setLoading(false);
+          navigate('/report');
+        }
+      } catch (err) {
+        console.log('레포트 생성 error:', err);
+      }
+    } catch (err) {
+      console.log('챗봇 감정 추천 error:', err);
+    }
     setLoading(true);
-    setTimeout(() => {
-      alert('API 호출 테스트 (결과 페이지 이동)');
-      setLoading(false);
-      navigate('/report');
-    }, 5000);
   };
 
   if (loading) {
