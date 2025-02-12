@@ -34,25 +34,28 @@ const PlaylistInner = () => {
     );
   }
   return (
-    <div className='bg-[#242723]'>
+    <div className='min-h-screen bg-[#242723]'>
       <MainHeader isHide='' />
-      <div>
-        <div className='w-full'>
+      <div className='w-screen bg-[#242723]'>
+        <div className='max-w-[1280px] mx-auto'>
           <PlaylistBackground isEdit={isEdit} trackHandler={trackHandler} />
-        </div>
-        <div className=' bg-[#242723] text-white p-4'>
-          <div className='flex items-start justify-start text-gray-400 gap-2'>
-            <p>{playlist.date}</p>
-            <span>•</span>
-            <p>{tracks.length} 곡</p>
-          </div>
-          <div className=''>
-            <TrackList
-              musicSet={tracks}
-              isEdit={isEdit}
-              isDelete={deleteTrack}
-              trackCount={tracks.length}
-            />
+          <div className='bg-[#242723] text-white px-8 py-4'>
+            <div
+              key={playlist.id}
+              className='flex items-start justify-start text-gray-400 gap-2'
+            >
+              <p>{playlist.date}</p>
+              <span>•</span>
+              <p>{tracks.length} 곡</p>
+            </div>
+            <div>
+              <TrackList
+                musicSet={tracks}
+                isEdit={isEdit}
+                isDelete={deleteTrack}
+                trackCount={tracks.length}
+              />
+            </div>
           </div>
         </div>
       </div>

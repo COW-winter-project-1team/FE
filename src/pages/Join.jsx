@@ -1,10 +1,11 @@
 import CommonInput from '../components/CommonInput';
 import CommonButton from '../components/CommonBtn';
 import { useState } from 'react';
+import { signup } from '../api/api';
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const nicknamePattern = /^[a-zA-Z0-9]{1,16}$/;
-const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net)$/;
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z0-9\-]+/;
 
 const Join = () => {
   const [nickname, setNickname] = useState('');
@@ -30,20 +31,32 @@ const Join = () => {
     //비밀번호 확인칸 검사
     if (confirmPassword === '') {
       newErrors.confirmPassword = '비밀번호를 입력해 주세요.';
-      if (password !== confirmPassword) {
-        newErrors.confirmPassword = '비밀번호가 일치하지q 않습니다.';
-      }
+    } else if (password !== confirmPassword) {
+      newErrors.confirmPassword = '비밀번호가 일치하지 않습니다.';
     }
-
-    console.log('Validation results:', newErrors); // 확인용 로그
     setError(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (checkInput()) {
-      alert('회원가입 성공!');
+    if (!checkInput()) {
+    }
+
+    alert('회원가입 성공!');
+
+    try {
+      const userData = {
+        username: nickname,
+        email: email,
+        password: password,
+      };
+
+      const result = await signup(userData);
+      console.log('회원가입이 완료입니다!', result);
+    } catch (err) {
+      console.error('회원가입 실패: ', err);
+      alert('회원가입에 실패했습니다.');
     }
   };
 
