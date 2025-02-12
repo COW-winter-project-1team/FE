@@ -2,7 +2,8 @@ import CommonInput from '../components/CommonInput';
 import DefaultBtn from '../components/CommonBtn';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { login } from '../api/api';
+import { login } from '../api/User';
+import { setCookie } from '../util/Cookie';
 
 const Landing = () => {
   const [id, setId] = useState('');
@@ -13,16 +14,19 @@ const Landing = () => {
       //성공 로직
       try {
         //로그인 성공했을 때
+        console.log('id:', id);
+        console.log('pw:', pw);
         const userData = {
           email: id,
           password: pw,
         };
 
-        const result = await login(userData);
+        const res = await login(userData);
+        console.log('result:', res);
+        const accessToken = res.token;
+        setCookie('accessToken', accessToken);
 
-        localStorage.getItem('token', result.token);
-
-        alert('로그인에 성공하셨습니다!', result);
+        alert('로그인에 성공하셨습니다!', res);
         //로그인 성공시 main 페이지로 이동
         navigate('/main');
         //로그인 실패했을 때
@@ -40,6 +44,7 @@ const Landing = () => {
   const moveToJoin = () => {
     navigate('/join');
   };
+
   return (
     <div className='w-full flex flex-col justify-center gap-[38px]'>
       <img

@@ -1,10 +1,9 @@
 import { Navigate } from 'react-router-dom';
+import { getCookie } from '../util/Cookie';
 
 const ProtectedRoute = ({ children }) => {
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    alert('로그인이 필요합니다!');
+  if (!getCookie('accessToken')) {
+    alert('로그인을 먼저 해 주세요!');
     return <Navigate to='/' replace />;
   }
 

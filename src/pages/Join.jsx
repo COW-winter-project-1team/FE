@@ -1,7 +1,8 @@
 import CommonInput from '../components/CommonInput';
 import CommonButton from '../components/CommonBtn';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import { signup } from '../api/api';
+import { signup } from '../api/User';
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const nicknamePattern = /^[a-zA-Z0-9]{1,16}$/;
@@ -13,6 +14,8 @@ const Join = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState({});
+
+  const navigate = useNavigate();
 
   const checkInput = () => {
     const newErrors = {};
@@ -41,9 +44,11 @@ const Join = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!checkInput()) {
+      return null;
     }
 
     alert('회원가입 성공!');
+    navigate('/');
 
     try {
       const userData = {

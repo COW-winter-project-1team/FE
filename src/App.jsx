@@ -6,12 +6,9 @@ import ResultReport from './pages/resultReport';
 import RecordingPage from './pages/RecordingPage';
 import PlaylistInner from './PlPage/PlaylistInner';
 import PlaylistPage from './PlPage/PlaylistPage';
-import config from '../.env/config';
 import ProtectedRoute from './routes/ProtectedRoute';
 
-
 const App = () => {
-  console.log('API URL:', config.apiUrl);
   return (
     <div className='w-full h-screen flex justify-center'>
       <Router>

@@ -1,7 +1,12 @@
 import CommonButton from '../components/CommonBtn';
 import MainHeader from '../MainUi/MainHeader';
+import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
+  const navigate = useNavigate();
+  const generatePlaylist = () => {
+    navigate('/recording');
+  };
   return (
     <div className='bg-[#242723] w-screen h-screen'>
       <MainHeader isHide='fontLogo' />
@@ -18,7 +23,10 @@ const Main = () => {
           <br /> 지금 바로 생성하러 갈까요?
         </p>
 
-        <CommonButton className='bg-[#343434] text-white w-[125px] h-[40px] rounded-2xl font-[500]'>
+        <CommonButton
+          className='bg-[#343434] text-white w-[125px] h-[40px] rounded-2xl font-[500]'
+          onClick={generatePlaylist}
+        >
           생성하기
         </CommonButton>
       </div>
