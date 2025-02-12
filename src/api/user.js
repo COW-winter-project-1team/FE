@@ -6,7 +6,7 @@ const baseUrl = 'https://moodipie.duckdns.org/api';
 export const signup = async (userData) => {
   try {
     const response = await axios.post(`${baseUrl}/signup`, userData);
-    return response.data; // 성공 응답 반환
+    return response.data;
   } catch (error) {
     throw error.response?.data || { message: '회원가입 요청 실패' };
   }
