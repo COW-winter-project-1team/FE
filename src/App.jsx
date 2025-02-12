@@ -9,6 +9,7 @@ import PlaylistPage from './PlPage/PlaylistPage';
 import config from '../.env/config';
 import ProtectedRoute from './routes/ProtectedRoute';
 
+
 const App = () => {
   console.log('API URL:', config.apiUrl);
   return (
