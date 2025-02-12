@@ -2,23 +2,49 @@ import CommonInput from '../components/CommonInput';
 import DefaultBtn from '../components/CommonBtn';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { login } from '../api/User';
+import { setCookie } from '../util/Cookie';
 
 const Landing = () => {
   const [id, setId] = useState('');
   const [pw, setPw] = useState('');
 
-  const Login = () => {
+  const Login = async () => {
     if (id.trim() && pw.trim()) {
       //성공 로직
+      try {
+        //로그인 성공했을 때
+        console.log('id:', id);
+        console.log('pw:', pw);
+        const userData = {
+          email: id,
+          password: pw,
+        };
+
+        const res = await login(userData);
+        console.log('result:', res);
+        const accessToken = res.token;
+        setCookie('accessToken', accessToken);
+
+        alert('로그인에 성공하셨습니다!', res);
+        //로그인 성공시 main 페이지로 이동
+        navigate('/main');
+        //로그인 실패했을 때
+      } catch (err) {
+        console.log('로그인 실패: ', err);
+        alert('로그인 중 오류 발생', err);
+      }
     } else {
       alert('아이디와 비밀번호를 모두 입력해 주세요.');
     }
   };
+
   const navigate = useNavigate();
 
   const moveToJoin = () => {
     navigate('/join');
   };
+
   return (
     <div className='w-full flex flex-col justify-center gap-[38px]'>
       <img

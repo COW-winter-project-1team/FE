@@ -1,12 +1,32 @@
+import { useState } from 'react';
 import data from '../data';
 import { useNavigate } from 'react-router-dom';
+import CommonButton from '../components/CommonBtn';
 
-const Playlist = () => {
-  const playlists = [...data];
+const Playlist = ({ isEditing }) => {
+  const [playlists, setPlaylists] = useState([...data]);
   const navigate = useNavigate();
+
   const moveToSonglist = (index) => {
-    navigate(`/tracklist/${index}`);
+    if (!isEditing) {
+      navigate(`/tracklist/${index}`);
+    }
   };
+
+  const deletePlaylist = (playlistId) => {
+    //삭제함수
+    setPlaylists((prevPlaylist) =>
+      prevPlaylist.filter((playlist) => playlist.index !== playlistId),
+    );
+    console.log(isEditing);
+  };
+
+  if (!playlists || playlists.length === 0) {
+    return (
+      <p className='text-gray-400 p-4 text-center'>플레이리스트가 없습니다.</p>
+    );
+  }
+
   return (
     <div className='flex justify-center'>
       <div className='w-full max-w-4xl h-[43rem] overflow-y-auto scrollbar-hide px-4 '>
@@ -22,7 +42,17 @@ const Playlist = () => {
                   moveToSonglist(playlist.index);
                 }}
               />
-              <h3 className='text-white font-bold'>{playlist.title}</h3>
+              <div className='flex items-center justify-between mt-2'>
+                <h3 className='text-white font-bold pt-2'>{playlist.title}</h3>
+                {isEditing && (
+                  <CommonButton
+                    className='text-white font-bold pt-2'
+                    onClick={() => deletePlaylist(playlist.index)}
+                  >
+                    <p>삭제</p>
+                  </CommonButton>
+                )}
+              </div>
               <p className='text-[#FFFFFF80] font-medium'>{playlist.date}</p>
             </div>
           ))}
