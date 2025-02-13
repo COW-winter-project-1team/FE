@@ -28,12 +28,12 @@ const Playlist = ({ isEditing }) => {
   }
 
   return (
-    <div className='flex justify-center'>
-      <div className='w-full max-w-4xl h-[43rem] overflow-y-auto scrollbar-hide px-4 '>
+    <div className='flex justify-center bg-[#343434]'>
+      <div className='w-full max-w-4xl h-[43rem] overflow-y-auto scrollbar-hide px-4'>
         {/* //스크롤 컨테이너 */}
         <div className='grid grid-cols-2 gap-5'>
           {playlists.map((playlist, index) => (
-            <div className='flex flex-col'>
+            <div key={playlist.id} className='flex flex-col'>
               <img
                 key={index}
                 src={playlist.imgUrl}

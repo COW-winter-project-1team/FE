@@ -15,7 +15,7 @@ const PlaylistBackground = ({ isEdit, trackHandler }) => {
         className='absolute inset-0 w-full h-full object-cover'
       />
       <div>
-        //편집모드 버튼
+        {/* 편집모드 버튼 */}
         <CommonButton
           className='absolute top-4 right-4 text-white px-3 py-1 rounded-full text-sm'
           onClick={trackHandler}
