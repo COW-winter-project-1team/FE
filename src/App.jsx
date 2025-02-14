@@ -1,12 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Main from './pages/Main';
-import Join from './pages/Join';
-import ResultReport from './pages/resultReport';
-import RecordingPage from './pages/RecordingPage';
-import PlaylistInner from './PlPage/PlaylistInner';
-import PlaylistPage from './PlPage/PlaylistPage';
-import ProtectedRoute from './routes/ProtectedRoute';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import Main from "./pages/Main";
+import Join from "./pages/Join";
+import ResultReport from "./pages/resultReport";
+import RecordingPage from "./pages/RecordingPage";
+import PlaylistInner from "./PlPage/PlaylistInner";
+import PlaylistPage from "./PlPage/PlaylistPage";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 const App = () => {
   return (
