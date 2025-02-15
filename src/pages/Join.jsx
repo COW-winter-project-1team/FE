@@ -1,41 +1,44 @@
-import CommonInput from '../components/CommonInput';
-import CommonButton from '../components/CommonBtn';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { signup } from '../api/User';
+import CommonInput from "../components/CommonInput";
+import CommonButton from "../components/CommonBtn";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { signup } from "../api/User";
+import { useDispatch } from "react-redux";
+import { setUser } from "/src/redux/UserSlice.js";
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const nicknamePattern = /^[a-zA-Z0-9]{1,16}$/;
-const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z0-9\-]+/;
+const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z0-9-]+/;
 
 const Join = () => {
-  const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [nickname, setNickname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState({});
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const checkInput = () => {
     const newErrors = {};
     //닉네임 검사
     if (!nicknamePattern.test(nickname)) {
-      newErrors.nickname = '영문 16자 이내로 작성해 주세요.';
+      newErrors.nickname = "영문 16자 이내로 작성해 주세요.";
     }
     //이메일 검사
     if (!emailPattern.test(email)) {
-      newErrors.email = '올바른 이메일 양식을 작성해 주세요';
+      newErrors.email = "올바른 이메일 양식을 작성해 주세요";
     }
     //비밀번호 검사
     if (!passwordPattern.test(password)) {
-      newErrors.password = '비밀번호는 8 ~ 16 자 및 특수문자를 포함해 주세요.';
+      newErrors.password = "비밀번호는 8 ~ 16 자 및 특수문자를 포함해 주세요.";
     }
     //비밀번호 확인칸 검사
-    if (confirmPassword === '') {
-      newErrors.confirmPassword = '비밀번호를 입력해 주세요.';
+    if (confirmPassword === "") {
+      newErrors.confirmPassword = "비밀번호를 입력해 주세요.";
     } else if (password !== confirmPassword) {
-      newErrors.confirmPassword = '비밀번호가 일치하지 않습니다.';
+      newErrors.confirmPassword = "비밀번호가 일치하지 않습니다.";
     }
     setError(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -47,9 +50,6 @@ const Join = () => {
       return null;
     }
 
-    alert('회원가입 성공!');
-    navigate('/');
-
     try {
       const userData = {
         username: nickname,
@@ -58,11 +58,16 @@ const Join = () => {
       };
 
       const result = await signup(userData);
-      console.log('회원가입이 완료입니다!', result);
+      console.log("회원가입이 완료입니다!", result);
+
+      alert("회원가입 성공!");
+
+      dispatch(setUser({ nickname, email }));
     } catch (err) {
-      console.error('회원가입 실패: ', err);
-      alert('회원가입에 실패했습니다.');
+      console.error("회원가입 실패: ", err);
+      alert("회원가입에 실패했습니다.");
     }
+    navigate("/");
   };
 
   return (
@@ -106,6 +111,7 @@ const Join = () => {
             type='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete='새 비밀번호'
           />
           {error.password && (
             <p className='text-red-500 text-sm pl-[5px]'>{error.password}</p>
@@ -118,6 +124,7 @@ const Join = () => {
             type='password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            autoComplete='새 비밀번호'
           />
           {error.confirmPassword && (
             <p className='text-red-500 text-sm pl-[5px]'>
