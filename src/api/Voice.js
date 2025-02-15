@@ -68,7 +68,7 @@ export const spotifyTrackSave = async (playlist) => {
 
   try {
     const res = await axios.post("/api/spotify/api/tracks", jsonTrack, {
-      header: {
+      headers: {
         withCredentials: true,
         "cookie": accessToken,
         "Content-Type": "application/json",
