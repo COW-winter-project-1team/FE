@@ -16,8 +16,7 @@ const MyPage = () => {
 
   const confirmDelete = async () => {
     try {
-      //const token = getCookie("accessToken");
-      await deleteUser(token);
+      await deleteUser();
       alert("회원 탈퇴가 완료되었습니다.");
       navigate("/join");
     } catch (error) {
@@ -28,8 +27,7 @@ const MyPage = () => {
 
   const handleNameChange = async () => {
     try {
-      //const token = getCookie("accessToken");
-      await updateUserName(token, name);
+      await updateUserName(name);
       alert("이름이 변경되었습니다.");
       setIsEditing(false);
     } catch (error) {
