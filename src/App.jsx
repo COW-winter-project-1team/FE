@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Main from './pages/Main';
 import Join from './pages/Join';
+import MyPage from './pages/MyPage';
 import ResultReport from './pages/resultReport';
 import RecordingPage from './pages/RecordingPage';
 import PlaylistInner from './PlPage/PlaylistInner';
@@ -53,6 +54,15 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <PlaylistInner />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='/mypage' element={<MyPage />} />
+          <Route
+            path='/join'
+            element={
+              <ProtectedRoute>
+                <ResultReport />
               </ProtectedRoute>
             }
           />
