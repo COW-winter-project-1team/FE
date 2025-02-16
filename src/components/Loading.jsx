@@ -1,9 +1,8 @@
-const ReportLoading = ({ username }) => {
+const ReportLoading = ({ loadingText }) => {
   return (
     <div className='w-full h-full flex flex-col justify-center items-center bg-gradient-to-b from-[#7CE5CC] to-[#9DA2EA] gap-10'>
       <div className='text-center'>
-        <p className='text-[16px] font-medium'>파이가 {username} 님의</p>
-        <p className='text-[16px] font-medium'>플레이리스트를 만들고 있어요</p>
+        <p className='text-[16px] font-medium'>{loadingText}</p>
       </div>
       <div className='mt-[50px]'>
         <div className='flex gap-2'>
