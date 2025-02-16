@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useReactMediaRecorder } from "react-media-recorder";
+import { AnimatePresence } from "framer-motion";
 import BeforeRecording from "../components/VoiceRecording/BeforeRecording";
 import Recording from "../components/VoiceRecording/Recording";
 import RecordingComplete from "../components/VoiceRecording/RecordingComplete";
@@ -63,25 +64,27 @@ const RecordingPage = () => {
   }, [mediaBlobUrl]);
 
   return (
-    <div className='w-full h-100vh'>
-      {recordingCompleted ? (
-        <RecordingComplete
-          username={username}
-          audioUrl={audioUrl}
-          moodText={moodText}
-        />
-      ) : isRecording ? (
-        <Recording
-          username={username}
-          mediaBlobUrl={mediaBlobUrl}
-          stopVoiceRecording={stopVoiceRecording}
-        />
-      ) : (
-        <BeforeRecording
-          username={username}
-          startVoiceRecording={startVoiceRecording}
-        />
-      )}
+    <div className='w-full h-100vh relative overflow-hidden'>
+      <AnimatePresence mode='wait'>
+        {recordingCompleted ? (
+          <RecordingComplete
+            username={username}
+            audioUrl={audioUrl}
+            moodText={moodText}
+          />
+        ) : isRecording ? (
+          <Recording
+            username={username}
+            mediaBlobUrl={mediaBlobUrl}
+            stopVoiceRecording={stopVoiceRecording}
+          />
+        ) : (
+          <BeforeRecording
+            username={username}
+            startVoiceRecording={startVoiceRecording}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

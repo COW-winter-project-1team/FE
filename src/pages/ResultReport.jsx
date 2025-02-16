@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import Emotion from "../components/Report/emotion";
 import Playlist from "../components/Report/Playlist";
-import { useNavigate, useSearchParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { getReportInfo } from "../api/Report";
 
@@ -44,24 +45,37 @@ const ResultReport = () => {
   }
 
   return (
-    <div className='bg-[#242723] w-full h-screen overflow-y-auto text-white flex flex-col'>
-      {/* 감정 태그 및 플레이리스트 */}
-      <div className='w-full flex flex-col items-center'>
-        <Emotion emotion={reportData.playlist.emotion} userName={userName} />
-        <Playlist reportData={reportData} />
-      </div>
-      <div className='w-full flex flex-col items-center mt-8 pb-16'>
-        <p className='text-white text-center font-semibold text-sm'>
-          지금 바로 음악 재생하기
-        </p>
-        <img
-          src='src/assets/PlayBtn.png'
-          alt='play button'
-          className='w-[47px] h-[48px] mt-4 cursor-pointer'
-          onClick={playMusic}
-        />
-      </div>
-    </div>
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.5 }}
+        className='w-full flex flex-col justify-center gap-[38px]'
+      >
+        <div className='bg-[#242723] w-full h-screen overflow-y-auto text-white flex flex-col'>
+          {/* 감정 태그 및 플레이리스트 */}
+          <div className='w-full flex flex-col items-center'>
+            <Emotion
+              emotion={reportData.playlist.emotion}
+              userName={userName}
+            />
+            <Playlist reportData={reportData} />
+          </div>
+          <div className='w-full flex flex-col items-center mt-8 pb-16'>
+            <p className='text-white text-center font-semibold text-sm'>
+              지금 바로 음악 재생하기
+            </p>
+            <img
+              src='src/assets/PlayBtn.png'
+              alt='play button'
+              className='w-[47px] h-[48px] mt-4 cursor-pointer'
+              onClick={playMusic}
+            />
+          </div>
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
