@@ -9,6 +9,7 @@ import PlaylistPage from "./PlPage/PlaylistPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import MyPage from "./pages/MyPage";
+
 const App = () => {
   return (
     <div className='w-full h-screen flex justify-center'>

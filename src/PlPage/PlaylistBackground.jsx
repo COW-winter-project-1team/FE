@@ -1,6 +1,6 @@
-import { useParams } from 'react-router-dom';
-import data from '../data';
-import CommonButton from '../components/CommonBtn';
+import { useParams } from "react-router-dom";
+import data from "../data";
+import CommonButton from "../components/CommonBtn";
 const PlaylistBackground = ({ isEdit, trackHandler }) => {
   const playlistsData = [...data];
   const { index } = useParams();
@@ -15,12 +15,11 @@ const PlaylistBackground = ({ isEdit, trackHandler }) => {
         className='absolute inset-0 w-full h-full object-cover'
       />
       <div>
-        //편집모드 버튼
         <CommonButton
           className='absolute top-4 right-4 text-white px-3 py-1 rounded-full text-sm'
           onClick={trackHandler}
         >
-          {isEdit ? '완료' : '편집'}
+          {isEdit ? "완료" : "편집"}
         </CommonButton>
       </div>
       <CommonButton className='absolute bottom-4 right-4 w-12 h-12 bg-white text-black p-2 rounded-full'>
