@@ -1,25 +1,71 @@
-import { useState } from 'react';
-import CommonBtn from '../CommonBtn';
-import { useNavigate } from 'react-router-dom';
-import ReportLoading from '../ReportLoading';
+import { useEffect, useState } from "react";
+import CommonBtn from "../CommonBtn";
+import { useNavigate } from "react-router-dom";
+import ReportLoading from "../ReportLoading";
+import { clovaStudio, createReport, spotifyTrackSave } from "../../api/Voice";
 
 const RecordingComplete = ({ username, moodText }) => {
-  const [loading, setLoading] = useState(false);
+  const [emotion, setEmotion] = useState("");
+  const [title, setTitle] = useState("그날의 무디파이 추천 노래");
+  const [playlist, setPlaylist] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingText, setLoadingText] = useState("파이가 음성을 분석 중이에요");
+
   const navigate = useNavigate();
 
-  const generateReport = async () => {
-    setLoading(true);
-    setTimeout(() => {
-      alert('API 호출 테스트 (결과 페이지 이동)');
+  const hanldeConfirmButton = async () => {
+    try {
+      setLoading(true);
+      // clova Studio chatbot api 연결
+      const clovaRes = await clovaStudio(moodText);
+      const obj = JSON.parse(clovaRes);
+      setTitle(obj.title);
+      setEmotion(obj.emotion);
+      setPlaylist(obj.playlist);
+    } catch (err) {
+      console.log("버튼 클릭 실행 중 오류", err);
+    }
+  };
+  //화면 렌더링 전 로딩화면
+  useEffect(() => {
+    if (moodText) {
       setLoading(false);
-      navigate('/report');
-    }, 5000);
+    }
+  }, [moodText]);
+
+  useEffect(() => {
+    if (emotion && title && playlist.length > 0) {
+      saveTracks();
+    }
+  }, [emotion, title, playlist]);
+
+  //트랙 생성
+  const saveTracks = async () => {
+    try {
+      setLoadingText("파이가 열심히 플레이리스트를 생성하고 있어요");
+      //스포티파이 api 호출
+      const spotifyRes = await spotifyTrackSave(playlist);
+      const reportInfo = {
+        "title": title,
+        "playlistImage": spotifyRes.data.data[0].imageUrl,
+        "emotion": emotion,
+        "trackIds": spotifyRes.data.data.map((track) => track.trackId),
+      };
+
+      //플레이리스트 생성
+      const reportRes = await createReport(reportInfo);
+      navigate(`/report?playlistNumber=${reportRes.data.playlistNumber}`);
+    } catch (err) {
+      console.error("플레이리스트 생성 중 오류 발생:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (loading) {
     return (
       <div className='w-full h-screen flex justify-center items-center'>
-        <ReportLoading username={username} />
+        <ReportLoading username={username} loadingText={loadingText} />
       </div>
     );
   }
@@ -39,13 +85,13 @@ const RecordingComplete = ({ username, moodText }) => {
 
       <CommonBtn
         className='w-[180px] h-[52px] rounded-[20px] bg-[#343434] text-white text-center text-[22px] font-[500] focus:outline-none mb-[15px]'
-        onClick={generateReport}
+        onClick={hanldeConfirmButton}
       >
         확인
       </CommonBtn>
 
       <p
-        className='text-[14px] font-medium cursor-pointer '
+        className='text-[14px] font-medium cursor-pointer'
         onClick={() => navigate(window.location.reload())}
       >
         다시 녹음하기
