@@ -1,5 +1,5 @@
 import MainHeader from "../MainUi/MainHeader";
-import Playlist from "./PlayList";
+import Playlist from "./Playlist";
 import CommonButton from "../components/CommonBtn";
 import { useState, useEffect } from "react";
 import { fetchPlaylist } from "../api/playlist";
@@ -14,16 +14,13 @@ function PlaylistPage() {
         const data = await fetchPlaylist();
         console.log("데이터 확인 : ", data);
         setPlaylistData(data);
+        console.log(fetchPlaylist());
       } catch (error) {
         console.log(error, "플레이리스트 조회 중 에러발생");
       }
     };
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log("변경된 데이터 확인", playlistData);
-  }, [playlistData]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import CommonButton from '../components/CommonBtn';
+import CommonButton from "../components/CommonBtn";
 
 const TrackItem = ({ track, isDelete, isEdit, trackCount }) => {
   return (
@@ -6,22 +6,22 @@ const TrackItem = ({ track, isDelete, isEdit, trackCount }) => {
       <div className='flex items-center gap-[2rem] p-[0.75rem] px-[2rem]'>
         <div className='flex items-center gap-[2rem] flex-grow'>
           <img
-            src={track.cover}
-            alt={track.title}
+            src={track.imageUrl}
+            alt={track.trackName}
             className='w-[4rem] h-[4rem] rounded-lg object-cover'
           />
           <div className='flex-grow'>
-            <h3 className='text-base font-semibold'>{track.title}</h3>
-            <p className='text-gray-400 text-sm'>{track.artist}</p>
+            <h3 className='text-base font-semibold'>{track.trackName}</h3>
+            <p className='text-gray-400 text-sm'>{track.artistName}</p>
           </div>
         </div>
-        <div className=''>
+        <div>
           {isEdit && trackCount > 1 && (
             <CommonButton
               className='text-lg'
-              onClick={() => isDelete(track.id)}
+              onClick={() => isDelete(track.trackId)}
             >
-              🗑
+              삭제
             </CommonButton>
           )}
         </div>
