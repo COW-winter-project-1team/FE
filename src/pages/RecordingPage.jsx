@@ -13,6 +13,8 @@ const convertBlobToWav = async (webmBlob) => {
 };
 
 const RecordingPage = () => {
+  //리덕스 데이터로 이름 전역관리
+  const userState = useSelector((state) => state.user.nickName);
   //음성녹음 상태 관리
   const [isRecording, setIsRecording] = useState(false);
   const [recordingCompleted, setRecordingCompleted] = useState(false);
@@ -21,8 +23,6 @@ const RecordingPage = () => {
   //case1. STT api 사용
   const [moodText, setMoodText] = useState("");
   //case2. STT 더미데이터 사용
-  //리덕스 데이터 불러오기
-  const username = useSelector((state) => state.user.nickName);
 
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
@@ -68,19 +68,19 @@ const RecordingPage = () => {
     <div className='w-full h-100vh'>
       {recordingCompleted ? (
         <RecordingComplete
-          username={username}
+          username={userState}
           audioUrl={audioUrl}
           moodText={moodText}
         />
       ) : isRecording ? (
         <Recording
-          username={username}
+          username={userState}
           mediaBlobUrl={mediaBlobUrl}
           stopVoiceRecording={stopVoiceRecording}
         />
       ) : (
         <BeforeRecording
-          username={username}
+          username={userState}
           startVoiceRecording={startVoiceRecording}
         />
       )}
