@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
-import TrackList from './Tracklist';
-import data from '../data';
-import PlaylistBackground from './PlaylistBackground';
-import MainHeader from '../MainUi/MainHeader';
-import { useState } from 'react';
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import TrackList from "./Tracklist";
+import data from "../data";
+import PlaylistBackground from "./PlaylistBackground";
+import MainHeader from "../MainUi/MainHeader";
 
 const PlaylistInner = () => {
   const playlistsData = [...data];
@@ -34,32 +35,40 @@ const PlaylistInner = () => {
     );
   }
   return (
-    <div className='min-h-screen bg-[#242723]'>
-      <MainHeader isHide='' />
-      <div className='w-screen bg-[#242723]'>
-        <div className='max-w-[1280px] mx-auto'>
-          <PlaylistBackground isEdit={isEdit} trackHandler={trackHandler} />
-          <div className='bg-[#242723] text-white px-8 py-4'>
-            <div
-              key={playlist.id}
-              className='flex items-start justify-start text-gray-400 gap-2'
-            >
-              <p>{playlist.date}</p>
-              <span>•</span>
-              <p>{tracks.length} 곡</p>
-            </div>
-            <div>
-              <TrackList
-                musicSet={tracks}
-                isEdit={isEdit}
-                isDelete={deleteTrack}
-                trackCount={tracks.length}
-              />
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.5 }}
+        className='min-h-screen bg-[#242723]'
+      >
+        <MainHeader isHide='' />
+        <div className='w-screen bg-[#242723]'>
+          <div className='max-w-[1280px] mx-auto'>
+            <PlaylistBackground isEdit={isEdit} trackHandler={trackHandler} />
+            <div className='bg-[#242723] text-white px-8 py-4'>
+              <div
+                key={playlist.id}
+                className='flex items-start justify-start text-gray-400 gap-2'
+              >
+                <p>{playlist.date}</p>
+                <span>•</span>
+                <p>{tracks.length} 곡</p>
+              </div>
+              <div>
+                <TrackList
+                  musicSet={tracks}
+                  isEdit={isEdit}
+                  isDelete={deleteTrack}
+                  trackCount={tracks.length}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

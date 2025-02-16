@@ -1,6 +1,7 @@
-import { useRef, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import CommonButton from '../CommonBtn';
+import { useRef, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import CommonButton from "../CommonBtn";
 
 const Recording = ({ username, stopVoiceRecording }) => {
   const audioContextRef = useRef(null);
@@ -74,8 +75,8 @@ const Recording = ({ username, stopVoiceRecording }) => {
         detectSilence();
       })
       .catch((err) => {
-        console.error('마이크 접근 오류:', err);
-        setError('마이크 권한을 허용하려면 브라우저 설정을 확인해주세요');
+        console.error("마이크 접근 오류:", err);
+        setError("마이크 권한을 허용하려면 브라우저 설정을 확인해주세요");
       });
 
     return () => {
@@ -85,7 +86,12 @@ const Recording = ({ username, stopVoiceRecording }) => {
   }, [stopVoiceRecording]);
 
   return (
-    <div className='w-full h-full flex flex-col justify-center items-center bg-gradient-to-b from-[#7CE5CC] to-[#9DA2EA] gap-[62px] '>
+    <motion.div
+      initial={{ backgroundColor: "#7CE5CC", opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+      className='absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center gap-[62px] bg-gradient-to-b from-[#7CE5CC] to-[#9DA2EA]'
+    >
       {error ? (
         <>
           <div className='text-black font-medium text-center'>{error}</div>
@@ -117,14 +123,14 @@ const Recording = ({ username, stopVoiceRecording }) => {
                 style={{
                   height: `${bar}px`,
                   transform: `scaleY(${bar / 100})`,
-                  transition: 'transform 0.1s linear',
+                  transition: "transform 0.1s linear",
                 }}
               ></div>
             ))}
           </div>
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
 
