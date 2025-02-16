@@ -8,6 +8,7 @@ import PlaylistInner from "./PlPage/PlaylistInner";
 import PlaylistPage from "./PlPage/PlaylistPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import MyPage from "./pages/MyPage";
 
 const App = () => {
   return (
@@ -56,6 +57,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route path='/mypage' element={<MyPage />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       </Router>

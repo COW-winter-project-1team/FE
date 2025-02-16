@@ -22,3 +22,33 @@ export const login = async (userData) => {
     throw error.response?.data || { message: "로그인 요청 실패" };
   }
 };
+//정보 수정 API 함수
+export const updateUserName = async (userData) => {
+  try {
+    //  토큰 가져오는 로직 필요
+    const response = await axios.put("/api/users", userData, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    console.log("응답값 확인:", response.data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "정보 수정 요청 실패" };
+  }
+};
+//회원 탈퇴 API 함수
+export const deleteUser = async () => {
+  try {
+    //  토큰 가져오는 로직 필요
+    const response = await axios.delete("/api/users", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    console.log("응답값확인:", response.data);
+    return response.data;
+  } catch (error) {
+    throw error.response?.data || { message: "회원 탈퇴 요청 실패" };
+  }
+};
