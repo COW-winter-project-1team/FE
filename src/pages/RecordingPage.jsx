@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import { useReactMediaRecorder } from 'react-media-recorder';
-import BeforeRecording from '../components/VoiceRecording/BeforeRecording';
-import Recording from '../components/VoiceRecording/Recording';
-import RecordingComplete from '../components/VoiceRecording/RecordingComplete';
-import { convertVoiceToText } from '../api/Voice';
+import { useEffect, useState } from "react";
+import { useReactMediaRecorder } from "react-media-recorder";
+import { AnimatePresence } from "framer-motion";
+import BeforeRecording from "../components/VoiceRecording/BeforeRecording";
+import Recording from "../components/VoiceRecording/Recording";
+import RecordingComplete from "../components/VoiceRecording/RecordingComplete";
+import { convertVoiceToText } from "../api/Voice";
 
 // WebM → WAV 변환 함수
 const convertBlobToWav = async (webmBlob) => {
   const arrayBuffer = await webmBlob.arrayBuffer();
-  return new Blob([arrayBuffer], { type: 'audio/wav' });
+  return new Blob([arrayBuffer], { type: "audio/wav" });
 };
 
 const RecordingPage = () => {
@@ -17,13 +18,14 @@ const RecordingPage = () => {
   const [recordingCompleted, setRecordingCompleted] = useState(false);
   const [audioUrl, setAudioUrl] = useState(null);
 
-  //STT 결과 텍스트
-  const [moodText, setMoodText] = useState('');
+  //case1. STT api 사용
+  const [moodText, setMoodText] = useState("");
+  //case2. STT 더미데이터 사용
 
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
   );
-  const username = '유라';
+  const username = "유라";
 
   const startVoiceRecording = () => {
     setIsRecording(true);
@@ -43,8 +45,8 @@ const RecordingPage = () => {
         .then(async (blob) => {
           //WebM → WAV 변환
           const wavBlob = await convertBlobToWav(blob);
-          const wavFile = new File([wavBlob], 'userMood.wav', {
-            type: 'audio/wav',
+          const wavFile = new File([wavBlob], "userMood.wav", {
+            type: "audio/wav",
             lastModified: new Date().getTime(),
           });
           setAudioUrl(wavFile);
@@ -54,33 +56,35 @@ const RecordingPage = () => {
             const VoiceToText = await convertVoiceToText(wavFile);
             setMoodText(VoiceToText.text);
           } catch (err) {
-            console.error('음성 인식 오류:', err);
+            console.error("음성 인식 오류:", err);
           }
         })
-        .catch((err) => console.log('파일 변환 오류: ', err));
+        .catch((err) => console.log("파일 변환 오류: ", err));
     }
   }, [mediaBlobUrl]);
 
   return (
-    <div className='w-full h-100vh'>
-      {recordingCompleted ? (
-        <RecordingComplete
-          username={username}
-          audioUrl={audioUrl}
-          moodText={moodText}
-        />
-      ) : isRecording ? (
-        <Recording
-          username={username}
-          mediaBlobUrl={mediaBlobUrl}
-          stopVoiceRecording={stopVoiceRecording}
-        />
-      ) : (
-        <BeforeRecording
-          username={username}
-          startVoiceRecording={startVoiceRecording}
-        />
-      )}
+    <div className='w-full h-100vh relative overflow-hidden'>
+      <AnimatePresence mode='wait'>
+        {recordingCompleted ? (
+          <RecordingComplete
+            username={username}
+            audioUrl={audioUrl}
+            moodText={moodText}
+          />
+        ) : isRecording ? (
+          <Recording
+            username={username}
+            mediaBlobUrl={mediaBlobUrl}
+            stopVoiceRecording={stopVoiceRecording}
+          />
+        ) : (
+          <BeforeRecording
+            username={username}
+            startVoiceRecording={startVoiceRecording}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
