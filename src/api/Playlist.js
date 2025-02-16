@@ -30,26 +30,27 @@ export const deletePlaylist = async ({ playlistNumber }) => {
   }
 };
 
-export const deleteTracks = async ({ playlistNumber, trackId }) => {
-  try {
-    const accessToken = getAccessToken();
-    const numericTrackId = Number(trackId); // 변환 추가
-    const numericPlaylistID = Number(playlistNumber);
-    if (isNaN(numericTrackId)) {
-      throw { message: "유효하지 않은 trackId입니다." };
-    }
+export const deleteTracks = async (playlistNumber, playlistTrackNumber) => {
+  const token = localStorage.getItem("accessToken"); // 저장된 토큰 가져오기
 
+  if (!token) {
+    throw new Error("로그인이 필요합니다.");
+  }
+
+  try {
     const response = await axios.delete(
-      `/api/playlists/${numericPlaylistID}/tracks/${numericTrackId}`,
+      `/api/playlists/${playlistNumber}/tracks/${playlistTrackNumber}`,
       {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${token}`, // 인증 토큰 추가
         },
       },
     );
-    return response.data;
+
+    return response;
   } catch (error) {
-    throw error.response?.data || { message: "트랙 삭제 중 오류 발생" };
+    console.error("트랙 삭제 실패:", error);
+    throw error;
   }
 };
 

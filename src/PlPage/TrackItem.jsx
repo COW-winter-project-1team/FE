@@ -19,7 +19,10 @@ const TrackItem = ({ track, isDelete, isEdit, trackCount }) => {
           {isEdit && trackCount > 1 && (
             <CommonButton
               className='text-lg'
-              onClick={() => isDelete(track.trackId)}
+              onClick={() => {
+                console.log("삭제 버튼 클릭, 트랙 정보:", track);
+                isDelete(track.playlistTrackNumber);
+              }}
             >
               삭제
             </CommonButton>

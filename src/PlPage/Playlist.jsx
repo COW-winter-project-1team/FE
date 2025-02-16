@@ -16,7 +16,7 @@ const Playlist = ({ isEditing, playlist }) => {
   }, [playlist]);
 
   const moveToSonglist = (id) => {
-    if (!isEditing) {
+    if (!isEditing && !isNaN(Number(id))) {
       navigate(`/tracklist/${id}`);
     }
   };
@@ -59,7 +59,9 @@ const Playlist = ({ isEditing, playlist }) => {
                 {isEditing && (
                   <CommonButton
                     className='text-white font-bold pt-2'
-                    onClick={() => handledDeletePlaylist(item.playlistNumber)}
+                    onClick={() =>
+                      handledDeletePlaylist(item.playlistTrackNumber)
+                    }
                   >
                     <p>삭제</p>
                   </CommonButton>

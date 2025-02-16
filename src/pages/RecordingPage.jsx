@@ -4,6 +4,7 @@ import BeforeRecording from "../components/VoiceRecording/BeforeRecording";
 import Recording from "../components/VoiceRecording/Recording";
 import RecordingComplete from "../components/VoiceRecording/RecordingComplete";
 import { convertVoiceToText } from "../api/Voice";
+import { useSelector } from "react-redux";
 
 // WebM → WAV 변환 함수
 const convertBlobToWav = async (webmBlob) => {
@@ -20,11 +21,12 @@ const RecordingPage = () => {
   //case1. STT api 사용
   const [moodText, setMoodText] = useState("");
   //case2. STT 더미데이터 사용
+  //리덕스 데이터 불러오기
+  const username = useSelector((state) => state.user.nickName);
 
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
   );
-  const username = "유라";
 
   const startVoiceRecording = () => {
     setIsRecording(true);
