@@ -18,7 +18,7 @@ const MyPage = () => {
     try {
       await deleteUser();
       alert("회원 탈퇴가 완료되었습니다.");
-      navigate("/join");
+      navigate("/");
     } catch (error) {
       console.error("회원 탈퇴 오류:", error);
       alert("회원 탈퇴 중 오류가 발생했습니다.");
@@ -37,17 +37,23 @@ const MyPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#242723] min-h-screen p-6">
-      {/* 헤더 섹션 */}
-      <MainHeader />
+    <div className='bg-[#242723] w-screen h-screen'>
+      <MainHeader isHide='fontLogo' />
 
       {/* 프로필 섹션 */}
-      <div className="w-80 p-6 bg-[#444444] rounded-lg flex flex-col items-center mt-8 shadow-lg">
+      <div className='flex flex-col items-center justify-center p-8  space-y-[34px] text-center'>
         <img
-          src="src/assets/pieInCircle.png"
-          alt="profile"
-          className="w-24 h-24 rounded-full mb-4 object-cover"
+          src='src/assets/EngLogo.png'
+          alt='fontLogo'
+          className='m-auto w-[250px]'
         />
+          <div className="flex flex-col items-center justify-center w-80 p-6 bg-gradient-to-b from-[#444444] rounded-lg shadow-lg mt-10">
+          <img
+            src="src/assets/pieInCircle.png"
+            alt="profile"
+            className="w-36 h-36 rounded-full mb-4 object-cover"
+          />
+
         {isEditing ? (
           <>
             <input
@@ -64,10 +70,11 @@ const MyPage = () => {
             <p className="text-white cursor-pointer mt-1" onClick={() => setIsEditing(true)}>변경</p>
           </>
         )}
+        </div>
       </div>
 
       {/* 회원탈퇴 */}
-      <div className="mt-3">
+      <div className="flex flex-col items-center mt-3">
         <p className="text-white cursor-pointer" onClick={handleDeleteAccount}>
           회원 탈퇴
         </p>
@@ -76,10 +83,10 @@ const MyPage = () => {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg text-center w-80">
+          <div className="bg-white p-7 rounded-lg text-center w-80">
             <p>회원 탈퇴 시 모든 정보가 사라지게 됩니다.</p>
-            <p className="mt-2">회원탈퇴를 계속 하시겠습니까?</p>
-            <div className="flex justify-between mt-4 gap-10">
+            <p className="mt-4">회원탈퇴를 계속 하시겠습니까?</p>
+            <div className="flex justify-between mt-5 gap-10">
               <DefaultBtn onClick={() => setShowModal(false)}>취소</DefaultBtn>
               <DefaultBtn onClick={confirmDelete}>확인</DefaultBtn>
             </div>
