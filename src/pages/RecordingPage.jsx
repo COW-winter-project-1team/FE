@@ -3,7 +3,7 @@ import { useReactMediaRecorder } from "react-media-recorder";
 import BeforeRecording from "../components/VoiceRecording/BeforeRecording";
 import Recording from "../components/VoiceRecording/Recording";
 import RecordingComplete from "../components/VoiceRecording/RecordingComplete";
-// import { convertVoiceToText } from "../api/Voice";
+import { convertVoiceToText } from "../api/Voice";
 
 // WebM → WAV 변환 함수
 const convertBlobToWav = async (webmBlob) => {
@@ -18,9 +18,8 @@ const RecordingPage = () => {
   const [audioUrl, setAudioUrl] = useState(null);
 
   //case1. STT api 사용
-  // const [moodText, setMoodText] = useState('');
+  const [moodText, setMoodText] = useState("");
   //case2. STT 더미데이터 사용
-  const moodText = "겨울에 이별을 했다";
 
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
@@ -53,8 +52,8 @@ const RecordingPage = () => {
           setRecordingCompleted(true);
           // Clova STT API 요청
           try {
-            // const VoiceToText = await convertVoiceToText(wavFile);
-            // setMoodText(VoiceToText.text);
+            const VoiceToText = await convertVoiceToText(wavFile);
+            setMoodText(VoiceToText.text);
           } catch (err) {
             console.error("음성 인식 오류:", err);
           }
