@@ -10,7 +10,6 @@ const Landing = () => {
 
   const Login = async () => {
     if (id.trim() && pw.trim()) {
-      //성공 로직
       try {
         //로그인 성공했을 때
         console.log("id:", id);
@@ -20,13 +19,7 @@ const Landing = () => {
           password: pw,
         };
 
-        const res = await login(userData);
-        console.log("result:", res);
-        // const accessToken = res.token;
-        // setCookie('accessToken', accessToken);
-
-        alert("로그인에 성공하셨습니다!", res);
-        //로그인 성공시 main 페이지로 이동
+        await login(userData);
         navigate("/main");
         //로그인 실패했을 때
       } catch (err) {
