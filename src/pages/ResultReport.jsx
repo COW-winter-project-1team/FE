@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Emotion from "../components/Report/emotion";
 import Playlist from "../components/Report/Playlist";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import ReportLoading from "../components/Loading";
+import Loading from "../components/Loading";
 import { getReportInfo } from "../api/Report";
 
 const ResultReport = () => {
@@ -35,20 +35,10 @@ const ResultReport = () => {
     fetchReportData();
   }, [playlistNumber]);
 
-  if (!reportData || !reportData.playlist) {
-    return (
-      <div className='bg-[#242723] w-full h-screen flex justify-center items-center text-white overflow-y-auto'>
-        <p>
-          레포트 데이터를 불러오는 중 오류가 발생했습니다. 다시 시도해주세요.
-        </p>
-      </div>
-    );
-  }
-
   if (loading) {
     return (
       <div className='w-full h-screen flex justify-center items-center'>
-        <ReportLoading loadingText={loadingText} />
+        <Loading loadingText={loadingText} />
       </div>
     );
   }

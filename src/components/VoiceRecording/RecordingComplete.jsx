@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CommonBtn from "../CommonBtn";
 import { useNavigate } from "react-router-dom";
-import ReportLoading from "../ReportLoading";
+import Loading from "../Loading";
 import { clovaStudio, createReport, spotifyTrackSave } from "../../api/Voice";
 
 const RecordingComplete = ({ username, moodText }) => {
@@ -65,7 +65,7 @@ const RecordingComplete = ({ username, moodText }) => {
   if (loading) {
     return (
       <div className='w-full h-screen flex justify-center items-center'>
-        <ReportLoading username={username} loadingText={loadingText} />
+        <Loading username={username} loadingText={loadingText} />
       </div>
     );
   }
