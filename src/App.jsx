@@ -58,14 +58,6 @@ const App = () => {
             }
           />
           <Route path='/mypage' element={<MyPage />} />
-          <Route
-            path='/join'
-            element={
-              <ProtectedRoute>
-                <ResultReport />
-              </ProtectedRoute>
-            }
-          />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       </Router>
