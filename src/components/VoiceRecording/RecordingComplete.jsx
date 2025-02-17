@@ -3,8 +3,11 @@ import CommonBtn from "../CommonBtn";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading";
 import { clovaStudio, createReport, spotifyTrackSave } from "../../api/Voice";
+import { useSelector } from "react-redux";
 
-const RecordingComplete = ({ username, moodText }) => {
+const RecordingComplete = ({ moodText }) => {
+  //리덕스 데이터로 이름 전역관리
+  const userState = useSelector((state) => state.user.nickName);
   const [emotion, setEmotion] = useState("");
   const [title, setTitle] = useState("그날의 무디파이 추천 노래");
   const [playlist, setPlaylist] = useState([]);
@@ -65,7 +68,7 @@ const RecordingComplete = ({ username, moodText }) => {
   if (loading) {
     return (
       <div className='w-full h-screen flex justify-center items-center'>
-        <Loading username={username} loadingText={loadingText} />
+        <Loading loadingText={loadingText} />
       </div>
     );
   }
@@ -74,7 +77,7 @@ const RecordingComplete = ({ username, moodText }) => {
     <div className='w-full h-full flex flex-col justify-center items-center bg-gradient-to-b from-[#7CE5CC] to-[#9DA2EA]'>
       <div>
         <p className='text-center text-[16px] font-semibold mb-[40px]'>
-          파이가 분석한 {username} 님의 현재 기분
+          파이가 분석한 {userState} 님의 현재 기분
         </p>
         <textarea
           className='w-[280px] h-[150px] rounded-md text-[14px] text-center p-4 resize-none focus:outline-none mb-[40px] font-medium'

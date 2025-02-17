@@ -1,4 +1,4 @@
-import TrackItem from './TrackItem';
+import TrackItem from "./TrackItem";
 
 const TrackList = ({ musicSet, isEdit, isDelete, trackCount }) => {
   if (!musicSet || musicSet.length === 0) {
@@ -9,7 +9,7 @@ const TrackList = ({ musicSet, isEdit, isDelete, trackCount }) => {
     <div className='w-full mt-4 max-h-[43rem] overflow-y-auto scrollbar-hide'>
       {musicSet.map((track) => (
         <TrackItem
-          key={track.id}
+          key={track.trackid}
           track={track}
           isEdit={isEdit}
           isDelete={isDelete}

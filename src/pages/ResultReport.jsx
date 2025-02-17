@@ -5,6 +5,7 @@ import Emotion from "../components/Report/emotion";
 import Playlist from "../components/Report/Playlist";
 import Loading from "../components/Loading";
 import { getReportInfo } from "../api/Report";
+import { useSelector } from "react-redux";
 
 const ResultReport = () => {
   const [searchParams] = useSearchParams();
@@ -14,7 +15,8 @@ const ResultReport = () => {
   const loadingText = "파이가 열심히 플레이리스트를 생성하고 있어요";
   const [loading, setLoading] = useState(true);
 
-  const userName = "yura";
+  //리덕스로 닉네임 관리
+  const userName = useSelector((state) => state.user.nickName);
 
   const navigate = useNavigate();
   const playMusic = () => {
