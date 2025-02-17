@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CommonButton from "../components/CommonBtn";
-import { deletePlaylist } from "../api/playlist";
 
 const Playlist = ({ isEditing, playlist }) => {
   const [playlists, setPlaylists] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(typeof playlist);
     if (playlist && Array.isArray(playlist.data)) {
       setPlaylists(playlist.data);
     } else {
@@ -16,21 +16,16 @@ const Playlist = ({ isEditing, playlist }) => {
   }, [playlist]);
 
   const moveToSonglist = (id) => {
-    if (!isEditing && !isNaN(Number(id))) {
+    if (!isEditing) {
       navigate(`/tracklist/${id}`);
     }
   };
 
-  const handledDeletePlaylist = async (playlistId) => {
+  const deletePlaylist = (playlistId) => {
+    //플레이리스트 삭제함수
     setPlaylists((prev) =>
       prev.filter((pl) => pl.playlistNumber !== playlistId),
     );
-
-    try {
-      await deletePlaylist({ playlistNumber: playlistId });
-    } catch (error) {
-      console.log("플레이리스트 삭제 중 오류 발생: ", error);
-    }
   };
 
   if (!playlists || playlists.length === 0) {
@@ -59,9 +54,7 @@ const Playlist = ({ isEditing, playlist }) => {
                 {isEditing && (
                   <CommonButton
                     className='text-white font-bold pt-2'
-                    onClick={() =>
-                      handledDeletePlaylist(item.playlistTrackNumber)
-                    }
+                    onClick={() => deletePlaylist(item.playlistNumber)}
                   >
                     <p>삭제</p>
                   </CommonButton>

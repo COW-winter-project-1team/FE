@@ -5,7 +5,6 @@ import BeforeRecording from "../components/VoiceRecording/BeforeRecording";
 import Recording from "../components/VoiceRecording/Recording";
 import RecordingComplete from "../components/VoiceRecording/RecordingComplete";
 import { convertVoiceToText } from "../api/Voice";
-import { useSelector } from "react-redux";
 
 // WebM → WAV 변환 함수
 const convertBlobToWav = async (webmBlob) => {
@@ -14,8 +13,6 @@ const convertBlobToWav = async (webmBlob) => {
 };
 
 const RecordingPage = () => {
-  //리덕스 데이터로 이름 전역관리
-  const userState = useSelector((state) => state.user.nickName);
   //음성녹음 상태 관리
   const [isRecording, setIsRecording] = useState(false);
   const [recordingCompleted, setRecordingCompleted] = useState(false);
@@ -28,6 +25,7 @@ const RecordingPage = () => {
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
   );
+  const username = "유라";
 
   const startVoiceRecording = () => {
     setIsRecording(true);
@@ -66,25 +64,6 @@ const RecordingPage = () => {
   }, [mediaBlobUrl]);
 
   return (
-    <div className='w-full h-100vh'>
-      {recordingCompleted ? (
-        <RecordingComplete
-          username={userState}
-          audioUrl={audioUrl}
-          moodText={moodText}
-        />
-      ) : isRecording ? (
-        <Recording
-          username={userState}
-          mediaBlobUrl={mediaBlobUrl}
-          stopVoiceRecording={stopVoiceRecording}
-        />
-      ) : (
-        <BeforeRecording
-          username={userState}
-          startVoiceRecording={startVoiceRecording}
-        />
-      )}
     <div className='w-full h-100vh relative overflow-hidden'>
       <AnimatePresence mode='wait'>
         {recordingCompleted ? (

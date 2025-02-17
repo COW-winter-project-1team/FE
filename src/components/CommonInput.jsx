@@ -1,10 +1,9 @@
 const CommonInput = ({
-  type = "text",
+  type = 'text',
   placeholder,
   value,
   onChange,
-  className = 'w-[312px] h-[52px] rounded-[20px] border-2 border-[#343434] bg-white px-4 py-2 font-[500] text-[16px] focus:outline-none mx-auto autocomplete="new-password"',
-  autoComplete,
+  className = 'w-[312px] h-[52px] rounded-[20px] border-2 border-[#343434] bg-white px-4 py-2 font-[500] text-[16px] focus:outline-none mx-auto',
 }) => {
   return (
     <input
@@ -13,7 +12,6 @@ const CommonInput = ({
       value={value}
       onChange={onChange}
       className={className}
-      autoComplete={autoComplete}
     />
   );
 };

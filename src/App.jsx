@@ -4,9 +4,9 @@ import Main from "./pages/Main";
 import Join from "./pages/Join";
 import ResultReport from "./pages/resultReport";
 import RecordingPage from "./pages/RecordingPage";
+import PlaylistInner from "./PlPage/PlaylistInner";
 import PlaylistPage from "./PlPage/PlaylistPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import TrackListPage from "./PlPage/TracklistPage";
 import NotFound from "./pages/NotFound";
 import MyPage from "./pages/MyPage";
 
@@ -53,7 +53,7 @@ const App = () => {
             path='/tracklist/:index'
             element={
               <ProtectedRoute>
-                <TrackListPage />
+                <PlaylistInner />
               </ProtectedRoute>
             }
           />
