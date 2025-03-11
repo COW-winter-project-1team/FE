@@ -12,7 +12,6 @@ const userSlice = createSlice({
     setUser: (state, action) => {
       state.nickName = action.payload.nickname;
       state.email = action.payload.email;
-      console.log(state, "확인용");
     },
     clearUser: (state) => {
       state.nickName = "";

@@ -1,6 +1,6 @@
 //매인페이지 메뉴 모달
 import { useNavigate } from "react-router-dom";
-import CommonButton from '../components/CommonBtn';
+import CommonButton from "../components/CommonBtn";
 
 const MenuModal = ({ setOpenModal }) => {
   const navigate = useNavigate();
@@ -13,17 +13,21 @@ const MenuModal = ({ setOpenModal }) => {
           onClick={() => {
             setOpenModal(false);
           }}
-          children='X'
           className='text-white'
-        />
+        >
+          X
+        </CommonButton>
         {/* 나머지 버튼 */}
-        <CommonButton children='AI 플레이리스트 생성' className=' text-white' />
+        <CommonButton className=' text-white'>
+          AI 플레이리스트 생성
+        </CommonButton>
         <CommonButton
           onClick={() => navigate("/mypage")}
-          children="마이페이지"
-          className="text-white"
-        />
-        <CommonButton children='로그아웃' className='  text-white' />
+          className='text-white'
+        >
+          마이페이지
+        </CommonButton>
+        <CommonButton className='  text-white'>로그아웃</CommonButton>
       </div>
     </div>
   );

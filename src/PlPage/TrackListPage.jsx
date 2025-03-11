@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import TrackList from "./Tracklist";
+import TrackList from "./TrackList";
 import PlaylistBackground from "./PlaylistBackground";
 import MainHeader from "../MainUi/MainHeader";
 import { useState, useEffect } from "react";
-import { fetchPlaylistCard, deleteTracks } from "../api/playlist";
+import { fetchPlaylistCard, deleteTracks } from "../api/Playlist";
 
 const TrackListPage = () => {
   const { index } = useParams();

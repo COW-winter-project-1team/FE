@@ -14,16 +14,11 @@ const convertBlobToWav = async (webmBlob) => {
 };
 
 const RecordingPage = () => {
-  //리덕스 데이터로 이름 전역관리
   const userState = useSelector((state) => state.user.nickName);
-  //음성녹음 상태 관리
   const [isRecording, setIsRecording] = useState(false);
   const [recordingCompleted, setRecordingCompleted] = useState(false);
   const [audioUrl, setAudioUrl] = useState(null);
-
-  //case1. STT api 사용
   const [moodText, setMoodText] = useState("");
-  //case2. STT 더미데이터 사용
 
   const { startRecording, stopRecording, mediaBlobUrl } = useReactMediaRecorder(
     { audio: true },
@@ -45,7 +40,6 @@ const RecordingPage = () => {
       fetch(mediaBlobUrl)
         .then((res) => res.blob())
         .then(async (blob) => {
-          //WebM → WAV 변환
           const wavBlob = await convertBlobToWav(blob);
           const wavFile = new File([wavBlob], "userMood.wav", {
             type: "audio/wav",
@@ -53,7 +47,6 @@ const RecordingPage = () => {
           });
           setAudioUrl(wavFile);
           setRecordingCompleted(true);
-          // Clova STT API 요청
           try {
             const VoiceToText = await convertVoiceToText(wavFile);
             setMoodText(VoiceToText.text);
@@ -66,42 +59,23 @@ const RecordingPage = () => {
   }, [mediaBlobUrl]);
 
   return (
-    <div className='w-full h-100vh'>
-      {recordingCompleted ? (
-        <RecordingComplete
-          username={userState}
-          audioUrl={audioUrl}
-          moodText={moodText}
-        />
-      ) : isRecording ? (
-        <Recording
-          username={userState}
-          mediaBlobUrl={mediaBlobUrl}
-          stopVoiceRecording={stopVoiceRecording}
-        />
-      ) : (
-        <BeforeRecording
-          username={userState}
-          startVoiceRecording={startVoiceRecording}
-        />
-      )}
-    <div className='w-full h-100vh relative overflow-hidden'>
+    <div className='w-full h-screen relative overflow-hidden'>
       <AnimatePresence mode='wait'>
         {recordingCompleted ? (
           <RecordingComplete
-            username={username}
+            username={userState}
             audioUrl={audioUrl}
             moodText={moodText}
           />
         ) : isRecording ? (
           <Recording
-            username={username}
+            username={userState}
             mediaBlobUrl={mediaBlobUrl}
             stopVoiceRecording={stopVoiceRecording}
           />
         ) : (
           <BeforeRecording
-            username={username}
+            username={userState}
             startVoiceRecording={startVoiceRecording}
           />
         )}
