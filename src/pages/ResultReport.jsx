@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import Emotion from "../components/Report/emotion";
-import Playlist from "../components/Report/Playlist";
+import Emotion from "../components/result_report/emotion";
+import Playlist from "../components/result_report/Playlist";
 import Loading from "../components/Loading";
 import { getReportInfo } from "../api/Report";
 import { useSelector } from "react-redux";

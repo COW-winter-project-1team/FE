@@ -63,3 +63,18 @@ export const deleteUser = async () => {
     throw error.response?.data || { message: "회원 탈퇴 요청 실패" };
   }
 };
+
+// 사용자 정보 조회 API 함수 (리덕스)
+export const getUserInfo = async () => {
+  const accessToken = localStorage.getItem("accessToken");
+  try {
+    const response = await axios.get("/api/users", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data.data;
+  } catch (error) {
+    throw error.response?.data || { message: "유저 정보 요청 실패" };
+  }
+};

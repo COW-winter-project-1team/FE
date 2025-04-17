@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import CommonButton from "../components/CommonBtn";
-import { deletePlaylist } from "../api/playlist";
+import CommonButton from "../ui/CommonBtn";
+import { deletePlaylist } from "../../api/Playlist";
 
 const Playlist = ({ isEditing, playlist }) => {
   const [playlists, setPlaylists] = useState([]);
@@ -25,6 +25,7 @@ const Playlist = ({ isEditing, playlist }) => {
     setPlaylists((prev) =>
       prev.filter((pl) => pl.playlistNumber !== playlistId),
     );
+    console.log("삭제 요청된 플레이리스트 ID:", playlistId);
 
     try {
       await deletePlaylist({ playlistNumber: playlistId });

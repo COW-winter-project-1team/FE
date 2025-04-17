@@ -1,10 +1,9 @@
-import { motion } from "framer-motion";
-import VoiceBtn from "../VoiceBtn";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import VoiceBtn from "../ui/VoiceBtn";
 
 const BeforeRecording = ({ username, startVoiceRecording }) => {
   const [startAnimation, setStartAnimation] = useState(false);
-
   const handleClick = () => {
     setStartAnimation(true);
     setTimeout(() => {

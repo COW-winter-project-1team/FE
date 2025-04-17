@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CommonBtn from "../CommonBtn";
+import CommonBtn from "../ui/CommonBtn";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading";
 import { clovaStudio, createReport, spotifyTrackSave } from "../../api/Voice";

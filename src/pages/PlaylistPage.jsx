@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import MainHeader from "../MainUi/MainHeader";
-import Playlist from "./Playlist";
-import CommonButton from "../components/CommonBtn";
-import { fetchPlaylist } from "../api/playlist";
+import MainHeader from "../components/header/MainHeader";
+import Playlist from "../components/playlist/playlist";
+import CommonButton from "../components/ui/CommonBtn";
+import { fetchPlaylist } from "../api/Playlist";
 
 function PlaylistPage() {
   const [isEditing, setIsEditing] = useState(false);

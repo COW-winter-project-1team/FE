@@ -1,4 +1,4 @@
-import CommonButton from "../components/CommonBtn";
+import CommonButton from "../ui/CommonBtn";
 
 const TrackItem = ({ track, isDelete, isEdit, trackCount }) => {
   return (

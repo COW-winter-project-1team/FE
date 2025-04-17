@@ -1,27 +1,40 @@
 import { AnimatePresence, motion } from "framer-motion";
-import CommonInput from "../components/CommonInput";
-import DefaultBtn from "../components/CommonBtn";
+import CommonInput from "../components/ui/CommonInput";
+import DefaultBtn from "../components/ui/CommonBtn";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { login } from "../api/User";
+import { login, getUserInfo } from "../api/User";
+import { useDispatch } from "react-redux"; // ✅ 추가
+import { setUser } from "../redux/UserSlice"; // ✅ 추가
+
 const Landing = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
+  const dispatch = useDispatch(); // ✅ 위치 옮김
+  const navigate = useNavigate();
+
   const Login = async () => {
     if (id.trim() && pw.trim()) {
       try {
-        //로그인 성공했을 때
-        console.log("id:", id);
-        console.log("pw:", pw);
         const userData = {
           email: id,
           password: pw,
         };
 
-        await login(userData);
-        navigate("/main");
-        //로그인 실패했을 때
+        await login(userData); // ✅ 로그인 요청 (토큰 저장됨)
+
+        const userInfo = await getUserInfo(); // ✅ 사용자 정보 가져오기
+
+        // ✅ Redux에 저장
+        dispatch(
+          setUser({
+            nickname: userInfo.username,
+            email: userInfo.email,
+          }),
+        );
+
+        navigate("/main"); // ✅ 이동은 정보 저장 이후에!
       } catch (err) {
         console.log("로그인 실패: ", err);
         alert("로그인 중 오류 발생", err);
@@ -30,8 +43,6 @@ const Landing = () => {
       alert("아이디와 비밀번호를 모두 입력해 주세요.");
     }
   };
-
-  const navigate = useNavigate();
 
   const moveToJoin = () => {
     navigate("/join");
