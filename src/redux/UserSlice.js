@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  nickName: "",
+  nickName: "사용자",
   email: "",
 };
 
