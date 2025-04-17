@@ -1,4 +1,4 @@
-import { fetchTracklist } from "../api/Playlist";
+import { fetchTracklist } from "../../api/Playlist";
 import { useEffect, useState } from "react";
 
 const PlayerInfo = () => {

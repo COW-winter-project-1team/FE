@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import CommonButton from "../CommonBtn";
+import CommonButton from "../ui/CommonBtn";
 
 const Recording = ({ username, stopVoiceRecording }) => {
   const audioContextRef = useRef(null);

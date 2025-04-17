@@ -1,7 +1,6 @@
-import EmotionTag from "../EmotionTag";
+import EmotionTag from "../ui/EmotionTag";
 
 const Emotion = ({ emotion, userName }) => {
-  // ✅ 감정 태그 매핑
   const emotionMapping = {
     TIRED: "지침",
     HAPPY: "행복",

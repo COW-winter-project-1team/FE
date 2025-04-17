@@ -1,6 +1,6 @@
 //매인페이지 메뉴 모달
 import { useNavigate } from "react-router-dom";
-import CommonButton from "../components/CommonBtn";
+import CommonButton from "../ui/CommonBtn";
 
 const MenuModal = ({ setOpenModal }) => {
   const navigate = useNavigate();

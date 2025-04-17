@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import Landing from "./pages/Landing";
 import Main from "./pages/Main";
 import Join from "./pages/Join";
 import ResultReport from "./pages/resultReport";
 import RecordingPage from "./pages/RecordingPage";
-import PlaylistPage from "./PlPage/PlaylistPage";
+import PlaylistPage from "./pages/PlaylistPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import TrackListPage from "./PlPage/TracklistPage";
+import TrackListPage from "./pages/TracklistPage";
 import NotFound from "./pages/NotFound";
 import MyPage from "./pages/MyPage";
 

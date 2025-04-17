@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useReactMediaRecorder } from "react-media-recorder";
 import { AnimatePresence } from "framer-motion";
-import BeforeRecording from "../components/VoiceRecording/BeforeRecording";
-import Recording from "../components/VoiceRecording/Recording";
-import RecordingComplete from "../components/VoiceRecording/RecordingComplete";
+import BeforeRecording from "../components/voice_recording/BeforeRecording";
+import Recording from "../components/voice_recording/Recording";
+import RecordingComplete from "../components/voice_recording/RecordingComplete";
 import { convertVoiceToText } from "../api/Voice";
-import { useSelector } from "react-redux";
 
 // WebM → WAV 변환 함수
 const convertBlobToWav = async (webmBlob) => {
@@ -14,7 +14,8 @@ const convertBlobToWav = async (webmBlob) => {
 };
 
 const RecordingPage = () => {
-  const userState = useSelector((state) => state.user.nickName);
+  const userState = useSelector((state) => state.user);
+  console.log("Redux에서 가져온 사용자 상태:", userState);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingCompleted, setRecordingCompleted] = useState(false);
   const [audioUrl, setAudioUrl] = useState(null);
@@ -63,19 +64,19 @@ const RecordingPage = () => {
       <AnimatePresence mode='wait'>
         {recordingCompleted ? (
           <RecordingComplete
-            username={userState}
+            username={userState.nickName}
             audioUrl={audioUrl}
             moodText={moodText}
           />
         ) : isRecording ? (
           <Recording
-            username={userState}
+            username={userState.nickName}
             mediaBlobUrl={mediaBlobUrl}
             stopVoiceRecording={stopVoiceRecording}
           />
         ) : (
           <BeforeRecording
-            username={userState}
+            username={userState.nickName}
             startVoiceRecording={startVoiceRecording}
           />
         )}

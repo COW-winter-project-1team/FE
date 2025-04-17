@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { fetchPlaylistCard } from "../api/Playlist";
-import CommonButton from "../components/CommonBtn";
+import { fetchPlaylistCard } from "../../api/Playlist";
+import CommonButton from "../ui/CommonBtn";
 
 const PlaylistBackground = ({ isEdit, trackHandler }) => {
   const { index } = useParams();

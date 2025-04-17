@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import CommonButton from "../components/CommonBtn";
-import MainHeader from "../MainUi/MainHeader";
+import CommonButton from "../components/ui/CommonBtn";
+import MainHeader from "../components/header/MainHeader";
 
 const Main = () => {
   const navigate = useNavigate();

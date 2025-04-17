@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import CommonInput from "../components/CommonInput";
-import CommonButton from "../components/CommonBtn";
+import CommonInput from "../components/ui/CommonInput";
+import CommonButton from "../components/ui/CommonBtn";
 import { signup } from "../api/User";
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
@@ -86,7 +86,7 @@ const Join = () => {
               <p className='pl-[15px] pt-2'>닉네임</p>
 
               <CommonInput
-                placeholder='영문 16자 이내'
+                placeholder='8 ~ 16자 영문, 숫자, 특수문자 조합'
                 type='text'
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
