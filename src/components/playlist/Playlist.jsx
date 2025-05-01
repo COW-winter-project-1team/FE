@@ -11,7 +11,22 @@ const Playlist = ({ isEditing, playlist }) => {
     if (playlist && Array.isArray(playlist.data)) {
       setPlaylists(playlist.data);
     } else {
-      setPlaylists([]);
+      setPlaylists([
+        {
+          playlistNumber: 1,
+          playlistTrackNumber: 101,
+          playlistImage: "https://via.placeholder.com/150",
+          title: "테스트 플레이리스트 1",
+          timestamp: "2025-05-01",
+        },
+        {
+          playlistNumber: 3,
+          playlistTrackNumber: 102,
+          playlistImage: "https://via.placeholder.com/150",
+          title: "테스트 플레이리스트 2",
+          timestamp: "2025-05-01",
+        },
+      ]);
     }
   }, [playlist]);
 
@@ -22,6 +37,8 @@ const Playlist = ({ isEditing, playlist }) => {
   };
 
   const handledDeletePlaylist = async (playlistId) => {
+    const prevPlayList = [...playlist];
+
     setPlaylists((prev) =>
       prev.filter((pl) => pl.playlistNumber !== playlistId),
     );
@@ -30,7 +47,9 @@ const Playlist = ({ isEditing, playlist }) => {
     try {
       await deletePlaylist({ playlistNumber: playlistId });
     } catch (error) {
+      setPlaylists(prevPlayList);
       console.log("플레이리스트 삭제 중 오류 발생: ", error);
+      console.log(typeof playlistId);
     }
   };
 
@@ -60,9 +79,7 @@ const Playlist = ({ isEditing, playlist }) => {
                 {isEditing && (
                   <CommonButton
                     className='text-white font-bold pt-2'
-                    onClick={() =>
-                      handledDeletePlaylist(item.playlistTrackNumber)
-                    }
+                    onClick={() => handledDeletePlaylist(item.playlistNumber)}
                   >
                     <p>삭제</p>
                   </CommonButton>
