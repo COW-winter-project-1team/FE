@@ -11,22 +11,7 @@ const Playlist = ({ isEditing, playlist }) => {
     if (playlist && Array.isArray(playlist.data)) {
       setPlaylists(playlist.data);
     } else {
-      setPlaylists([
-        {
-          playlistNumber: 1,
-          playlistTrackNumber: 101,
-          playlistImage: "https://via.placeholder.com/150",
-          title: "테스트 플레이리스트 1",
-          timestamp: "2025-05-01",
-        },
-        {
-          playlistNumber: 3,
-          playlistTrackNumber: 102,
-          playlistImage: "https://via.placeholder.com/150",
-          title: "테스트 플레이리스트 2",
-          timestamp: "2025-05-01",
-        },
-      ]);
+      setPlaylists([]);
     }
   }, [playlist]);
 

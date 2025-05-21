@@ -18,14 +18,13 @@ export const fetchPlaylist = async () => {
 
 export const deletePlaylist = async ({ playlistNumber }) => {
   try {
-    // const accessToken = getAccessToken();
-    // const response = await axios.delete(`/api/playlists/${playlistNumber}`, {
-    //   headers: {
-    //     Authorization: `Bearer ${accessToken}`,
-    //   },
-    // });
-    // return response.data;
-    console.log("더미 API 호출됨. 삭제 요청된 playlistNumber:", playlistNumber);
+    const accessToken = getAccessToken();
+    const response = await axios.delete(`/api/playlists/${playlistNumber}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return response.data;
   } catch (error) {
     throw error.response?.data || { message: "플레이리스트 삭제 중 오류 발생" };
   }
