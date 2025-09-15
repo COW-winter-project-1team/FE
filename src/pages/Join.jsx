@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CommonInput from "../components/ui/CommonInput";
 import CommonButton from "../components/ui/CommonBtn";
 import { signup } from "../api/User";
+import { toast } from "react-toastify";
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const nicknamePattern = /^[a-zA-Z0-9]{1,16}$/;
@@ -48,7 +49,7 @@ const Join = () => {
       return null;
     }
 
-    alert("회원가입 성공!");
+    toast.success("회원가입 성공!");
     navigate("/");
 
     try {
@@ -62,7 +63,7 @@ const Join = () => {
       console.log("회원가입이 완료입니다!", result);
     } catch (err) {
       console.error("회원가입 실패: ", err);
-      alert("회원가입에 실패했습니다.");
+      toast.error("회원가입에 실패했습니다.");
     }
   };
 

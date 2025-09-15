@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteUser, updateUserName } from "../api/User";
 import DefaultBtn from "../components/ui/CommonBtn";
 import MainHeader from "../components/header/MainHeader";
+import { toast } from "react-toastify";
 
 const MyPage = () => {
   const navigate = useNavigate();
@@ -17,22 +18,30 @@ const MyPage = () => {
   const confirmDelete = async () => {
     try {
       await deleteUser();
-      alert("회원 탈퇴가 완료되었습니다.");
+      toast.success("회원 탈퇴가 완료되었습니다.", {
+        position: "top-right",
+      });
       navigate("/");
     } catch (error) {
       console.error("회원 탈퇴 오류:", error);
-      alert("회원 탈퇴 중 오류가 발생했습니다.");
+      toast.error("회원 탈퇴 중 오류가 발생했습니다.", {
+        position: "top-right",
+      });
     }
   };
 
   const handleNameChange = async () => {
     try {
       await updateUserName(name);
-      alert("이름이 변경되었습니다.");
+      toast.success("이름이 변경되었습니다.", {
+        position: "top-right",
+      });
       setIsEditing(false);
     } catch (error) {
       console.error("이름 변경 오류:", error);
-      alert("이름 변경 중 오류가 발생했습니다.");
+      toast.error("이름 변경 중 오류가 발생했습니다.", {
+        position: "top-right",
+      });
     }
   };
 

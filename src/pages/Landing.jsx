@@ -4,14 +4,15 @@ import DefaultBtn from "../components/ui/CommonBtn";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login, getUserInfo } from "../api/User";
-import { useDispatch } from "react-redux"; // ✅ 추가
-import { setUser } from "../redux/UserSlice"; // ✅ 추가
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/UserSlice";
+import { toast } from "react-toastify";
 
 const Landing = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
 
-  const dispatch = useDispatch(); // ✅ 위치 옮김
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const Login = async () => {
@@ -22,25 +23,30 @@ const Landing = () => {
           password: pw,
         };
 
-        await login(userData); // ✅ 로그인 요청 (토큰 저장됨)
+        await login(userData);
 
-        const userInfo = await getUserInfo(); // ✅ 사용자 정보 가져오기
+        const userInfo = await getUserInfo();
 
-        // ✅ Redux에 저장
         dispatch(
           setUser({
             nickname: userInfo.username,
             email: userInfo.email,
           }),
         );
-
-        navigate("/main"); // ✅ 이동은 정보 저장 이후에!
+        toast.success("로그인 성공!", {
+          position: "top-right",
+        });
+        navigate("/main");
       } catch (err) {
-        console.log("로그인 실패: ", err);
-        alert("로그인 중 오류 발생", err);
+        console.log("로그인 실패: ");
+        toast.error("로그인 중 오류 발생", {
+          position: "top-right",
+        });
       }
     } else {
-      alert("아이디와 비밀번호를 모두 입력해 주세요.");
+      toast.error("아이디와 비밀번호를 모두 입력해 주세요.", {
+        position: "top-right",
+      });
     }
   };
 
