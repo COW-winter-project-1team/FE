@@ -19,7 +19,8 @@
     "react-icons": "^5.5.0",
     "react-media-recorder": "^1.7.1",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.1.1"
+    "react-router-dom": "^7.1.1",
+    "typescript": "^5.9.2"
   },
   "proxy": "http://localhost:8080",
   "devDependencies": {
