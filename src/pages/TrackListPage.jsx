@@ -4,6 +4,7 @@ import PlaylistBackground from "../components/playlist/PlaylistBackground";
 import MainHeader from "../components/header/MainHeader";
 import { useState, useEffect } from "react";
 import { fetchPlaylistCard, deleteTracks } from "../api/Playlist";
+import { toast } from "react-toastify";
 
 const TrackListPage = () => {
   const { index } = useParams();
@@ -51,7 +52,9 @@ const TrackListPage = () => {
   const deleteHandler = async (playlistTrackNumber) => {
     console.log("삭제 요청된 트랙 번호:", playlistTrackNumber); // 디버깅용 콘솔 추가
     if (!playlistTrackNumber) {
-      alert("삭제할 트랙 번호가 없습니다!");
+      toast.error("삭제할 트랙 번호가 없습니다!", {
+        position: "top-right",
+      });
       return;
     }
 
@@ -65,7 +68,9 @@ const TrackListPage = () => {
       );
     } catch (error) {
       console.error("트랙 삭제 실패:", error);
-      alert(error.message || "트랙 삭제에 실패했습니다.");
+      toast.error(error.message || "트랙 삭제에 실패했습니다.", {
+        position: "top-right",
+      });
     }
   };
 

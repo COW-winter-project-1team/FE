@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CommonInput from "../components/ui/CommonInput";
 import CommonButton from "../components/ui/CommonBtn";
 import { signup } from "../api/User";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const passwordPattern = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/;
 const nicknamePattern = /^[a-zA-Z0-9]{1,16}$/;
@@ -143,7 +143,6 @@ const Join = () => {
                   className='w-[180px] h-[52px] rounded-[20px] bg-[#343434] text-white text-center text-[22px] font-[500] focus:outline-none'
                 >
                   확인
-                  <ToastContainer autoClose={3000} />
                 </CommonButton>
               </div>
             </form>

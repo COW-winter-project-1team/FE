@@ -6,7 +6,7 @@ import { useState } from "react";
 import { login, getUserInfo } from "../api/User";
 import { useDispatch } from "react-redux";
 import { setUser } from "../redux/UserSlice";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Landing = () => {
   const [id, setId] = useState("");
@@ -82,7 +82,6 @@ const Landing = () => {
         />
         <DefaultBtn type='submit' onClick={Login}>
           로그인
-          <ToastContainer autoClose={3000} />
         </DefaultBtn>
         <p
           className='text-center font-medium -mt-5 cursor-pointer'
