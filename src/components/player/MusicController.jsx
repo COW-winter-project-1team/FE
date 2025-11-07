@@ -5,7 +5,6 @@ import { IoPlaySkipBack } from "react-icons/io5";
 import { useState } from "react";
 
 const MusicController = () => {
-  // const [isPlaying, setIsPlaying] = useState(false); 음악 재생 관리
   const [pause, setPause] = useState(false);
 
   const stopHandler = () => {
