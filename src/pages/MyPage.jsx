@@ -54,7 +54,7 @@ const MyPage = () => {
         <img
           src='src/assets/EngLogo.png'
           alt='fontLogo'
-          className='m-auto w-15.625'
+          className='m-auto w-[15.625rem]'
         />
         <div className='flex flex-col items-center justify-center w-80 p-6 bg-gradient-to-b from-[#444444] rounded-lg shadow-lg mt-10'>
           <img
@@ -92,14 +92,12 @@ const MyPage = () => {
         </div>
       </div>
 
-      {/* 회원탈퇴 */}
       <div className='flex flex-col items-center mt-3'>
         <p className='text-white cursor-pointer' onClick={handleDeleteAccount}>
           회원 탈퇴
         </p>
       </div>
 
-      {/* Modal */}
       {showModal && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
           <div className='bg-white p-7 rounded-lg text-center w-80'>

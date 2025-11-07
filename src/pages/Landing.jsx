@@ -61,12 +61,12 @@ const Landing = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.5 }}
-        className='w-full flex flex-col justify-center gap-2.375'
+        className='w-full flex flex-col justify-center gap-[2.375rem]'
       >
         <img
           src='src/assets/FullLogo.png'
           alt='logo'
-          className='flex mx-auto w-16.25 h-10'
+          className='flex mx-auto w-[16.25rem] h-10'
         />
         <CommonInput
           placeholder='아이디'

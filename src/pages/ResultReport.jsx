@@ -69,7 +69,7 @@ const ResultReport = () => {
             <img
               src='src/assets/PlayBtn.png'
               alt='play button'
-              className='w-2.938 h-3 mt-4 cursor-pointer'
+              className='w-[2.938rem] h-3 mt-4 cursor-pointer'
               onClick={playMusic}
             />
           </div>

@@ -50,7 +50,7 @@ const TrackListPage = () => {
   };
 
   const deleteHandler = async (playlistTrackNumber) => {
-    console.log("삭제 요청된 트랙 번호:", playlistTrackNumber); // 디버깅용 콘솔 추가
+    console.log("삭제 요청된 트랙 번호:", playlistTrackNumber);
     if (!playlistTrackNumber) {
       toast.error("삭제할 트랙 번호가 없습니다!", {
         position: "top-right",
@@ -59,7 +59,7 @@ const TrackListPage = () => {
     }
 
     try {
-      await deleteTracks(playlistId, playlistTrackNumber); // 객체 전달 X, 숫자만 전달
+      await deleteTracks(playlistId, playlistTrackNumber);
 
       setTracks((prevTracks) =>
         prevTracks.filter(
@@ -82,7 +82,6 @@ const TrackListPage = () => {
       <MainHeader isHide='' />
       <div className='w-screen bg-[#242723]'>
         <div className='max-w-80 mx-auto'>
-          {/* 배경 이미지 */}
           <PlaylistBackground
             isEdit={isEdit}
             trackHandler={trackHandler}
@@ -98,7 +97,6 @@ const TrackListPage = () => {
               <p>{tracks.length} 곡</p>
             </div>
             <div>
-              {/* 트랙 리스트 */}
               <TrackList
                 musicSet={tracks}
                 isEdit={isEdit}
