@@ -7,7 +7,6 @@ import Recording from "../components/voice_recording/Recording";
 import RecordingComplete from "../components/voice_recording/RecordingComplete";
 import { convertVoiceToText } from "../api/Voice";
 
-// WebM → WAV 변환 함수
 const convertBlobToWav = async (webmBlob) => {
   const arrayBuffer = await webmBlob.arrayBuffer();
   return new Blob([arrayBuffer], { type: "audio/wav" });
