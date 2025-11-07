@@ -11,7 +11,6 @@ export const signup = async (userData) => {
   }
 };
 
-//로그인 api
 export const login = async (userData) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
@@ -32,7 +31,6 @@ export const login = async (userData) => {
   }
 };
 
-//정보 수정 API 함수
 export const updateUserName = async (userData) => {
   const accessToken = localStorage.getItem("accessToken");
   try {
@@ -48,7 +46,6 @@ export const updateUserName = async (userData) => {
   }
 };
 
-//회원 탈퇴 API 함수
 export const deleteUser = async () => {
   const accessToken = localStorage.getItem("accessToken");
   try {
@@ -64,7 +61,6 @@ export const deleteUser = async () => {
   }
 };
 
-// 사용자 정보 조회 API 함수 (리덕스)
 export const getUserInfo = async () => {
   const accessToken = localStorage.getItem("accessToken");
   try {

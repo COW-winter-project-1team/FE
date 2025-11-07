@@ -31,7 +31,7 @@ export const deletePlaylist = async ({ playlistNumber }) => {
 };
 
 export const deleteTracks = async (playlistNumber, playlistTrackNumber) => {
-  const token = localStorage.getItem("accessToken"); // 저장된 토큰 가져오기
+  const token = localStorage.getItem("accessToken");
 
   if (!token) {
     throw new Error("로그인이 필요합니다.");
@@ -42,7 +42,7 @@ export const deleteTracks = async (playlistNumber, playlistTrackNumber) => {
       `/api/playlists/${playlistNumber}/tracks/${playlistTrackNumber}`,
       {
         headers: {
-          Authorization: `Bearer ${token}`, // 인증 토큰 추가
+          Authorization: `Bearer ${token}`,
         },
       },
     );
