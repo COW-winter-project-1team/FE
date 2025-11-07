@@ -61,12 +61,12 @@ const Landing = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.5 }}
-        className='w-full flex flex-col justify-center gap-[38px]'
+        className='w-full flex flex-col justify-center gap-2.375'
       >
         <img
           src='src/assets/FullLogo.png'
           alt='logo'
-          className='flex mx-auto w-[260px] h-[160px]'
+          className='flex mx-auto w-16.25 h-10'
         />
         <CommonInput
           placeholder='아이디'
@@ -84,7 +84,7 @@ const Landing = () => {
           로그인
         </DefaultBtn>
         <p
-          className='text-center font-medium -mt-5 cursor-pointer'
+          className='text-center font-medium mt-5 cursor-pointer'
           onClick={moveToJoin}
         >
           회원가입

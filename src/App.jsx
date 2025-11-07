@@ -4,7 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Landing from "./pages/Landing";
 import Main from "./pages/Main";
 import Join from "./pages/Join";
-import ResultReport from "./pages/resultReport";
+import ResultReport from "./pages/ResultReport";
 import RecordingPage from "./pages/RecordingPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
@@ -63,7 +63,7 @@ const App = () => {
           <Route path='/*' element={<NotFound />} />
         </Routes>
         <ToastContainer
-          position="top-right"
+          position='top-right'
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}

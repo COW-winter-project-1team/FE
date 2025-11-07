@@ -81,7 +81,7 @@ const TrackListPage = () => {
     <div className='min-h-screen bg-[#242723]'>
       <MainHeader isHide='' />
       <div className='w-screen bg-[#242723]'>
-        <div className='max-w-[1280px] mx-auto'>
+        <div className='max-w-80 mx-auto'>
           {/* 배경 이미지 */}
           <PlaylistBackground
             isEdit={isEdit}

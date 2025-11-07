@@ -50,11 +50,11 @@ const MyPage = () => {
       <MainHeader isHide='fontLogo' />
 
       {/* 프로필 섹션 */}
-      <div className='flex flex-col items-center justify-center p-8  space-y-[34px] text-center'>
+      <div className='flex flex-col items-center justify-center p-8  space-y-2.125 text-center'>
         <img
           src='src/assets/EngLogo.png'
           alt='fontLogo'
-          className='m-auto w-[250px]'
+          className='m-auto w-15.625'
         />
         <div className='flex flex-col items-center justify-center w-80 p-6 bg-gradient-to-b from-[#444444] rounded-lg shadow-lg mt-10'>
           <img

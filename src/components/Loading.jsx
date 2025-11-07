@@ -19,9 +19,9 @@ const Loading = ({ loadingText }) => {
     <div className='w-full h-full flex flex-col justify-center items-center bg-gradient-to-b from-[#7CE5CC] to-[#9DA2EA] gap-10'>
       {!showImage ? (
         <>
-          <div className='mt-[50px] flex flex-col'>
+          <div className='mt-3.125 flex flex-col'>
             <div className='text-center mb-16 mx-auto'>
-              <p className='text-[16px] font-medium'>{loadingText}</p>
+              <p className='text-1 font-medium'>{loadingText}</p>
             </div>
             <div className='flex gap-4 mx-auto'>
               <div className='w-4 h-4 bg-white rounded-full animate-custom-bounce'></div>
@@ -34,7 +34,7 @@ const Loading = ({ loadingText }) => {
         <img
           src='src/assets/EngLogo.png'
           alt='fontLogo'
-          className='m-auto w-[250px] transition-opacity duration-500 opacity-100'
+          className='m-auto w-15.625 transition-opacity duration-500 opacity-100'
         />
       )}
     </div>

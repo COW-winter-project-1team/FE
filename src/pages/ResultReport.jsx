@@ -15,7 +15,6 @@ const ResultReport = () => {
   const loadingText = "파이가 열심히 플레이리스트를 생성하고 있어요";
   const [loading, setLoading] = useState(true);
 
-  //리덕스로 닉네임 관리
   const userName = useSelector((state) => state.user.nickName);
 
   const navigate = useNavigate();
@@ -53,10 +52,9 @@ const ResultReport = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -50 }}
         transition={{ duration: 0.5 }}
-        className='w-full flex flex-col justify-center gap-[38px]'
+        className='w-full flex flex-col justify-center gap-2.375'
       >
         <div className='bg-[#242723] w-full h-screen overflow-y-auto text-white flex flex-col'>
-          {/* 감정 태그 및 플레이리스트 */}
           <div className='w-full flex flex-col items-center'>
             <Emotion
               emotion={reportData.playlist.emotion}
@@ -71,7 +69,7 @@ const ResultReport = () => {
             <img
               src='src/assets/PlayBtn.png'
               alt='play button'
-              className='w-[47px] h-[48px] mt-4 cursor-pointer'
+              className='w-2.938 h-3 mt-4 cursor-pointer'
               onClick={playMusic}
             />
           </div>
